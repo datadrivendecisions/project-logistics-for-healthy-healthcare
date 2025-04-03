@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Healthcare Dashboard - Multi Region</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4 mb-4 text-center">Healthcare Dashboard - Regions</h1>
+    <!-- Nav tabs for regions -->
+    <ul class="nav nav-tabs" id="regionTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="arnhem-tab" data-toggle="tab" href="#arnhem" role="tab" aria-controls="arnhem" aria-selected="true">Arnhem</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="nijmegen-tab" data-toggle="tab" href="#nijmegen" role="tab" aria-controls="nijmegen" aria-selected="false">Nijmegen</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="regionTabContent">
+      <!-- Arnhem Dashboard -->
+      <div class="tab-pane fade show active" id="arnhem" role="tabpanel" aria-labelledby="arnhem-tab">
+        <div class="row mt-4">
+          <!-- Nursing Home Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                Nursing Home Beds (Arnhem)
+              </div>
+              <div class="card-body">
+                <h3 id="nursingHomeBedsArnhem" class="card-title">0</h3>
+                <p class="card-text">Available beds in nursing homes.</p>
+              </div>
+            </div>
+          </div>
+          <!-- First-Line Stay (ELV) Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-success text-white">
+                First-Line Stay (ELV) Beds (Arnhem)
+              </div>
+              <div class="card-body">
+                <h3 id="firstLineBedsArnhem" class="card-title">0</h3>
+                <p class="card-text">Available first-line (ELV) beds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Crisis Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-danger text-white">
+                Crisis Beds (Arnhem)
+              </div>
+              <div class="card-body">
+                <h3 id="crisisBedsArnhem" class="card-title">0</h3>
+                <p class="card-text">Available crisis beds.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Waiting Times and Occupancy Rates -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-warning text-white">
+                Waiting Times &amp; Occupancy Rates (Arnhem)
+              </div>
+              <div class="card-body">
+                <p id="waitingTimeArnhem" class="card-text">Waiting Time: 0 days</p>
+                <p id="occupancyRateArnhem" class="card-text">Occupancy Rate: 0%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nijmegen Dashboard -->
+      <div class="tab-pane fade" id="nijmegen" role="tabpanel" aria-labelledby="nijmegen-tab">
+        <div class="row mt-4">
+          <!-- Nursing Home Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                Nursing Home Beds (Nijmegen)
+              </div>
+              <div class="card-body">
+                <h3 id="nursingHomeBedsNijmegen" class="card-title">0</h3>
+                <p class="card-text">Available beds in nursing homes.</p>
+              </div>
+            </div>
+          </div>
+          <!-- First-Line Stay (ELV) Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-success text-white">
+                First-Line Stay (ELV) Beds (Nijmegen)
+              </div>
+              <div class="card-body">
+                <h3 id="firstLineBedsNijmegen" class="card-title">0</h3>
+                <p class="card-text">Available first-line (ELV) beds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Crisis Beds -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-danger text-white">
+                Crisis Beds (Nijmegen)
+              </div>
+              <div class="card-body">
+                <h3 id="crisisBedsNijmegen" class="card-title">0</h3>
+                <p class="card-text">Available crisis beds.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Waiting Times and Occupancy Rates -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-warning text-white">
+                Waiting Times &amp; Occupancy Rates (Nijmegen)
+              </div>
+              <div class="card-body">
+                <p id="waitingTimeNijmegen" class="card-text">Waiting Time: 0 days</p>
+                <p id="occupancyRateNijmegen" class="card-text">Occupancy Rate: 0%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline JavaScript to simulate dynamic data updates -->
+  <script>
+    // Dummy data for demo purposes for each region
+    const dashboardData = {
+      arnhem: {
+        nursingHomeBeds: 45,
+        firstLineBeds: 30,
+        crisisBeds: 15,
+        waitingTime: 3,       // in days
+        occupancyRate: 85     // in percentage
+      },
+      nijmegen: {
+        nursingHomeBeds: 60,
+        firstLineBeds: 40,
+        crisisBeds: 20,
+        waitingTime: 2,       // in days
+        occupancyRate: 90     // in percentage
+      }
+    };
+
+    // Function to update the dashboard for a given region
+    function updateRegionDashboard(region, data) {
+      document.getElementById('nursingHomeBeds' + region).innerText = data.nursingHomeBeds;
+      document.getElementById('firstLineBeds' + region).innerText = data.firstLineBeds;
+      document.getElementById('crisisBeds' + region).innerText = data.crisisBeds;
+      document.getElementById('waitingTime' + region).innerText = 'Waiting Time: ' + data.waitingTime + ' days';
+      document.getElementById('occupancyRate' + region).innerText = 'Occupancy Rate: ' + data.occupancyRate + '%';
+    }
+
+    // Call update functions when the page loads
+    window.onload = function() {
+      updateRegionDashboard('Arnhem', dashboardData.arnhem);
+      updateRegionDashboard('Nijmegen', dashboardData.nijmegen);
+    };
+  </script>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
