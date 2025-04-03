@@ -1,0 +1,18 @@
+{
+  "arnhem": {
+    "nursingHomeBeds": 45,
+    "firstLineBeds": 30,
+    "crisisBeds": 15,
+    "waitingTime": 3,
+    "occupancyRate": 85,
+    "totalNursingHomes": 3
+  },
+  "nijmegen": {
+    "nursingHomeBeds": 60,
+    "firstLineBeds": 40,
+    "crisisBeds": 20,
+    "waitingTime": 2,
+    "occupancyRate": 90,
+    "totalNursingHomes": 3
+  }
+}

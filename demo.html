@@ -1,183 +1,732 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Healthcare Dashboard - Multi Region</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <style>
-    .card {
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1 class="mt-4 mb-4 text-center">Healthcare Dashboard - Regions</h1>
-    <!-- Nav tabs for regions -->
-    <ul class="nav nav-tabs" id="regionTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="arnhem-tab" data-toggle="tab" href="#arnhem" role="tab" aria-controls="arnhem" aria-selected="true">Arnhem</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="nijmegen-tab" data-toggle="tab" href="#nijmegen" role="tab" aria-controls="nijmegen" aria-selected="false">Nijmegen</a>
-      </li>
-    </ul>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zorgcapaciteit Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
+    />
+    <style>
+      .card {
+        margin-bottom: 20px;
+      }
+      .table-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .sort-icon {
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+      .table th {
+        cursor: pointer;
+      }
+      .rating-high {
+        color: #28a745;
+        font-weight: bold;
+      }
+      .rating-medium {
+        color: #ffc107;
+        font-weight: bold;
+      }
+      .rating-low {
+        color: #dc3545;
+        font-weight: bold;
+      }
+      .download-btn {
+        margin-bottom: 20px;
+      }
+      .loading {
+        text-align: center;
+        padding: 30px;
+        font-style: italic;
+        color: #6c757d;
+      }
+      .error-message {
+        color: #dc3545;
+        padding: 15px;
+        border: 1px solid #dc3545;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4 mb-4 text-center">Zorgcapaciteit Dashboard</h1>
 
-    <div class="tab-content" id="regionTabContent">
-      <!-- Arnhem Dashboard -->
-      <div class="tab-pane fade show active" id="arnhem" role="tabpanel" aria-labelledby="arnhem-tab">
-        <div class="row mt-4">
-          <!-- Nursing Home Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-primary text-white">
-                Nursing Home Beds (Arnhem)
-              </div>
-              <div class="card-body">
-                <h3 id="nursingHomeBedsArnhem" class="card-title">0</h3>
-                <p class="card-text">Available beds in nursing homes.</p>
-              </div>
-            </div>
-          </div>
-          <!-- First-Line Stay (ELV) Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-success text-white">
-                First-Line Stay (ELV) Beds (Arnhem)
-              </div>
-              <div class="card-body">
-                <h3 id="firstLineBedsArnhem" class="card-title">0</h3>
-                <p class="card-text">Available first-line (ELV) beds.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Crisis Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-danger text-white">
-                Crisis Beds (Arnhem)
-              </div>
-              <div class="card-body">
-                <h3 id="crisisBedsArnhem" class="card-title">0</h3>
-                <p class="card-text">Available crisis beds.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Waiting Times and Occupancy Rates -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-warning text-white">
-                Waiting Times &amp; Occupancy Rates (Arnhem)
-              </div>
-              <div class="card-body">
-                <p id="waitingTimeArnhem" class="card-text">Waiting Time: 0 days</p>
-                <p id="occupancyRateArnhem" class="card-text">Occupancy Rate: 0%</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Nav tabs for regions -->
+      <ul class="nav nav-tabs" id="regionTab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="arnhem-tab"
+            data-toggle="tab"
+            href="#arnhem"
+            role="tab"
+            aria-controls="arnhem"
+            aria-selected="true"
+            >Arnhem</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="nijmegen-tab"
+            data-toggle="tab"
+            href="#nijmegen"
+            role="tab"
+            aria-controls="nijmegen"
+            aria-selected="false"
+            >Nijmegen</a
+          >
+        </li>
+      </ul>
 
-      <!-- Nijmegen Dashboard -->
-      <div class="tab-pane fade" id="nijmegen" role="tabpanel" aria-labelledby="nijmegen-tab">
-        <div class="row mt-4">
-          <!-- Nursing Home Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-primary text-white">
-                Nursing Home Beds (Nijmegen)
+      <div class="tab-content" id="regionTabContent">
+        <!-- Arnhem Dashboard -->
+        <div
+          class="tab-pane fade show active"
+          id="arnhem"
+          role="tabpanel"
+          aria-labelledby="arnhem-tab"
+        >
+          <div class="row mt-4">
+            <!-- Nursing Home Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-primary text-white">
+                  Nursing Home Beds (Arnhem)
+                </div>
+                <div class="card-body">
+                  <h3 id="nursingHomeBedsArnhem" class="card-title">0</h3>
+                  <p class="card-text">
+                    Available beds in
+                    <span id="totalNursingHomesArnhem">0</span> nursing homes.
+                  </p>
+                </div>
               </div>
-              <div class="card-body">
-                <h3 id="nursingHomeBedsNijmegen" class="card-title">0</h3>
-                <p class="card-text">Available beds in nursing homes.</p>
+            </div>
+            <!-- First-Line Stay (ELV) Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-success text-white">
+                  First-Line Stay (ELV) Beds (Arnhem)
+                </div>
+                <div class="card-body">
+                  <h3 id="firstLineBedsArnhem" class="card-title">0</h3>
+                  <p class="card-text">Available first-line (ELV) beds.</p>
+                </div>
               </div>
             </div>
           </div>
-          <!-- First-Line Stay (ELV) Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-success text-white">
-                First-Line Stay (ELV) Beds (Nijmegen)
-              </div>
-              <div class="card-body">
-                <h3 id="firstLineBedsNijmegen" class="card-title">0</h3>
-                <p class="card-text">Available first-line (ELV) beds.</p>
+          <div class="row">
+            <!-- Crisis Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-danger text-white">
+                  Crisis Beds (Arnhem)
+                </div>
+                <div class="card-body">
+                  <h3 id="crisisBedsArnhem" class="card-title">0</h3>
+                  <p class="card-text">Available crisis beds.</p>
+                </div>
               </div>
             </div>
+            <!-- Waiting Times and Occupancy Rates -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-warning text-white">
+                  Waiting Times &amp; Occupancy Rates (Arnhem)
+                </div>
+                <div class="card-body">
+                  <p id="waitingTimeArnhem" class="card-text">
+                    Waiting Time: 0 days
+                  </p>
+                  <p id="occupancyRateArnhem" class="card-text">
+                    Occupancy Rate: 0%
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search and CSV Download for Arnhem -->
+          <div class="row mt-4 mb-3">
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="searchArnhem"
+                class="form-control"
+                placeholder="Zoeken op naam of locatie..."
+              />
+            </div>
+            <div class="col-md-6 text-right">
+              <button
+                id="downloadCsvArnhem"
+                class="btn btn-success download-btn"
+              >
+                <i class="fa fa-download"></i> Download CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Arnhem Table -->
+          <div id="arnhemLoadingIndicator" class="loading">
+            Gegevens worden geladen...
+          </div>
+          <div
+            id="arnhemErrorMessage"
+            class="error-message"
+            style="display: none"
+          >
+            Er is een fout opgetreden bij het laden van de gegevens.
+          </div>
+          <div
+            class="table-container"
+            id="arnhemTableContainer"
+            style="display: none"
+          >
+            <table id="arnhemTable" class="table table-striped table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th data-sort="Naam">
+                    Naam <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Locatie">
+                    Locatie <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Afstand">
+                    Afstand (km) <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Cijfer">
+                    Cijfer <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Aantal Waarderingen">
+                    Aantal Waarderingen <span class="sort-icon">↕️</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="arnhemTableBody">
+                <!-- Table data will be populated by JavaScript -->
+              </tbody>
+            </table>
+            <div
+              id="arnhemNoResults"
+              class="alert alert-info text-center"
+              style="display: none"
+            >
+              Geen resultaten gevonden.
+            </div>
+          </div>
+
+          <div class="text-muted small">
+            Bron:
+            <a
+              href="https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ZorgkaartNederland.nl
+            </a>
+            <p class="mt-1">
+              Totaal aantal zorghuizen weergegeven:
+              <span id="totalDisplayedArnhem">0</span>
+            </p>
           </div>
         </div>
-        <div class="row">
-          <!-- Crisis Beds -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-danger text-white">
-                Crisis Beds (Nijmegen)
+
+        <!-- Nijmegen Dashboard -->
+        <div
+          class="tab-pane fade"
+          id="nijmegen"
+          role="tabpanel"
+          aria-labelledby="nijmegen-tab"
+        >
+          <div class="row mt-4">
+            <!-- Nursing Home Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-primary text-white">
+                  Nursing Home Beds (Nijmegen)
+                </div>
+                <div class="card-body">
+                  <h3 id="nursingHomeBedsNijmegen" class="card-title">0</h3>
+                  <p class="card-text">
+                    Available beds in
+                    <span id="totalNursingHomesNijmegen">0</span> nursing homes.
+                  </p>
+                </div>
               </div>
-              <div class="card-body">
-                <h3 id="crisisBedsNijmegen" class="card-title">0</h3>
-                <p class="card-text">Available crisis beds.</p>
+            </div>
+            <!-- First-Line Stay (ELV) Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-success text-white">
+                  First-Line Stay (ELV) Beds (Nijmegen)
+                </div>
+                <div class="card-body">
+                  <h3 id="firstLineBedsNijmegen" class="card-title">0</h3>
+                  <p class="card-text">Available first-line (ELV) beds.</p>
+                </div>
               </div>
             </div>
           </div>
-          <!-- Waiting Times and Occupancy Rates -->
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header bg-warning text-white">
-                Waiting Times &amp; Occupancy Rates (Nijmegen)
-              </div>
-              <div class="card-body">
-                <p id="waitingTimeNijmegen" class="card-text">Waiting Time: 0 days</p>
-                <p id="occupancyRateNijmegen" class="card-text">Occupancy Rate: 0%</p>
+          <div class="row">
+            <!-- Crisis Beds -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-danger text-white">
+                  Crisis Beds (Nijmegen)
+                </div>
+                <div class="card-body">
+                  <h3 id="crisisBedsNijmegen" class="card-title">0</h3>
+                  <p class="card-text">Available crisis beds.</p>
+                </div>
               </div>
             </div>
+            <!-- Waiting Times and Occupancy Rates -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-warning text-white">
+                  Waiting Times &amp; Occupancy Rates (Nijmegen)
+                </div>
+                <div class="card-body">
+                  <p id="waitingTimeNijmegen" class="card-text">
+                    Waiting Time: 0 days
+                  </p>
+                  <p id="occupancyRateNijmegen" class="card-text">
+                    Occupancy Rate: 0%
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search and CSV Download for Nijmegen -->
+          <div class="row mt-4 mb-3">
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="searchNijmegen"
+                class="form-control"
+                placeholder="Zoeken op naam of locatie..."
+              />
+            </div>
+            <div class="col-md-6 text-right">
+              <button
+                id="downloadCsvNijmegen"
+                class="btn btn-success download-btn"
+              >
+                <i class="fa fa-download"></i> Download CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Nijmegen Table -->
+          <div id="nijmegenLoadingIndicator" class="loading">
+            Gegevens worden geladen...
+          </div>
+          <div
+            id="nijmegenErrorMessage"
+            class="error-message"
+            style="display: none"
+          >
+            Er is een fout opgetreden bij het laden van de gegevens.
+          </div>
+          <div
+            class="table-container"
+            id="nijmegenTableContainer"
+            style="display: none"
+          >
+            <table
+              id="nijmegenTable"
+              class="table table-striped table-bordered"
+            >
+              <thead class="thead-light">
+                <tr>
+                  <th data-sort="Naam">
+                    Naam <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Locatie">
+                    Locatie <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Afstand">
+                    Afstand (km) <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Cijfer">
+                    Cijfer <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Aantal Waarderingen">
+                    Aantal Waarderingen <span class="sort-icon">↕️</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="nijmegenTableBody">
+                <!-- Table data will be populated by JavaScript -->
+              </tbody>
+            </table>
+            <div
+              id="nijmegenNoResults"
+              class="alert alert-info text-center"
+              style="display: none"
+            >
+              Geen resultaten gevonden.
+            </div>
+          </div>
+
+          <div class="text-muted small">
+            Bron:
+            <a
+              href="https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ZorgkaartNederland.nl
+            </a>
+            <p class="mt-1">
+              Totaal aantal zorghuizen weergegeven:
+              <span id="totalDisplayedNijmegen">0</span>
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Inline JavaScript to simulate dynamic data updates -->
-  <script>
-    // Dummy data for demo purposes for each region
-    const dashboardData = {
-      arnhem: {
-        nursingHomeBeds: 45,
-        firstLineBeds: 30,
-        crisisBeds: 15,
-        waitingTime: 3,       // in days
-        occupancyRate: 85     // in percentage
-      },
-      nijmegen: {
-        nursingHomeBeds: 60,
-        firstLineBeds: 40,
-        crisisBeds: 20,
-        waitingTime: 2,       // in days
-        occupancyRate: 90     // in percentage
+    <!-- JavaScript -->
+    <script>
+      // Data containers
+      let zorghuizenData = {
+        arnhem: [],
+        nijmegen: [],
+      };
+
+      // Dashboard data
+      let dashboardData = {
+        arnhem: {
+          nursingHomeBeds: 0,
+          firstLineBeds: 0,
+          crisisBeds: 0,
+          waitingTime: 0,
+          occupancyRate: 0,
+          totalNursingHomes: 0,
+        },
+        nijmegen: {
+          nursingHomeBeds: 0,
+          firstLineBeds: 0,
+          crisisBeds: 0,
+          waitingTime: 0,
+          occupancyRate: 0,
+          totalNursingHomes: 0,
+        },
+      };
+
+      // Sorteerinstellingen
+      const sortConfig = {
+        arnhem: { key: "Cijfer", direction: "descending" },
+        nijmegen: { key: "Cijfer", direction: "descending" },
+      };
+
+      // Zoekfilters
+      const filters = {
+        arnhem: "",
+        nijmegen: "",
+      };
+
+      // Functie om data te laden uit JSON-bestanden
+      async function loadData() {
+        try {
+          // Laad dashboard data
+          const dashboardResponse = await fetch("dashboard-data.json");
+          if (!dashboardResponse.ok) {
+            throw new Error("Failed to load dashboard data");
+          }
+          const dashboardJson = await dashboardResponse.json();
+          dashboardData = dashboardJson;
+
+          // Update dashboard UI met geladen data
+          updateDashboardUI("arnhem");
+          updateDashboardUI("nijmegen");
+
+          // Arnhem zorghuizen data laden
+          await loadRegionData("arnhem", "verzorgingshuizen-arnhem.json");
+
+          // Nijmegen zorghuizen data laden (alleen bij tabwissel)
+          document
+            .getElementById("nijmegen-tab")
+            .addEventListener("click", async function () {
+              if (zorghuizenData.nijmegen.length === 0) {
+                await loadRegionData(
+                  "nijmegen",
+                  "verzorgingshuizen-nijmegen.json"
+                );
+              }
+            });
+        } catch (error) {
+          console.error("Error loading data:", error);
+          document.getElementById("arnhemErrorMessage").style.display = "block";
+          document.getElementById("arnhemLoadingIndicator").style.display =
+            "none";
+          document.getElementById("nijmegenErrorMessage").style.display =
+            "block";
+          document.getElementById("nijmegenLoadingIndicator").style.display =
+            "none";
+        }
       }
-    };
 
-    // Function to update the dashboard for a given region
-    function updateRegionDashboard(region, data) {
-      document.getElementById('nursingHomeBeds' + region).innerText = data.nursingHomeBeds;
-      document.getElementById('firstLineBeds' + region).innerText = data.firstLineBeds;
-      document.getElementById('crisisBeds' + region).innerText = data.crisisBeds;
-      document.getElementById('waitingTime' + region).innerText = 'Waiting Time: ' + data.waitingTime + ' days';
-      document.getElementById('occupancyRate' + region).innerText = 'Occupancy Rate: ' + data.occupancyRate + '%';
-    }
+      // Functie om regionele data te laden
+      async function loadRegionData(region, jsonFile) {
+        try {
+          document.getElementById(`${region}LoadingIndicator`).style.display =
+            "block";
+          document.getElementById(`${region}TableContainer`).style.display =
+            "none";
+          document.getElementById(`${region}ErrorMessage`).style.display =
+            "none";
 
-    // Call update functions when the page loads
-    window.onload = function() {
-      updateRegionDashboard('Arnhem', dashboardData.arnhem);
-      updateRegionDashboard('Nijmegen', dashboardData.nijmegen);
-    };
-  </script>
+          const response = await fetch(jsonFile);
+          if (!response.ok) {
+            throw new Error(`Failed to load ${region} data`);
+          }
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+          const data = await response.json();
+          zorghuizenData[region] = data;
+
+          // Bijwerken aantal verzorgingshuizen
+          dashboardData[region].totalNursingHomes = data.length;
+          document.getElementById(
+            `totalNursingHomes${
+              region.charAt(0).toUpperCase() + region.slice(1)
+            }`
+          ).textContent = data.length;
+
+          // Tabel vullen met data
+          populateTable(region);
+
+          // Verberg laadindicator, toon tabel
+          document.getElementById(`${region}LoadingIndicator`).style.display =
+            "none";
+          document.getElementById(`${region}TableContainer`).style.display =
+            "block";
+        } catch (error) {
+          console.error(`Error loading ${region} data:`, error);
+          document.getElementById(`${region}LoadingIndicator`).style.display =
+            "none";
+          document.getElementById(`${region}ErrorMessage`).style.display =
+            "block";
+        }
+      }
+
+      // Functie om dashboard UI te updaten met geladen data
+      function updateDashboardUI(region) {
+        const data = dashboardData[region];
+        const capitalized = region.charAt(0).toUpperCase() + region.slice(1);
+
+        document.getElementById(`nursingHomeBeds${capitalized}`).textContent =
+          data.nursingHomeBeds;
+        document.getElementById(`firstLineBeds${capitalized}`).textContent =
+          data.firstLineBeds;
+        document.getElementById(`crisisBeds${capitalized}`).textContent =
+          data.crisisBeds;
+        document.getElementById(
+          `waitingTime${capitalized}`
+        ).textContent = `Waiting Time: ${data.waitingTime} days`;
+        document.getElementById(
+          `occupancyRate${capitalized}`
+        ).textContent = `Occupancy Rate: ${data.occupancyRate}%`;
+        document.getElementById(`totalNursingHomes${capitalized}`).textContent =
+          data.totalNursingHomes;
+      }
+
+      // Functie om tabel te vullen voor een regio
+      function populateTable(region) {
+        const tableBody = document.getElementById(`${region}TableBody`);
+        const noResults = document.getElementById(`${region}NoResults`);
+        const totalDisplayed = document.getElementById(
+          `totalDisplayed${region.charAt(0).toUpperCase() + region.slice(1)}`
+        );
+
+        // Sorteer en filter data
+        let data = [...zorghuizenData[region]];
+
+        // Sorteren
+        data.sort((a, b) => {
+          const key = sortConfig[region].key;
+          if (a[key] < b[key]) {
+            return sortConfig[region].direction === "ascending" ? -1 : 1;
+          }
+          if (a[key] > b[key]) {
+            return sortConfig[region].direction === "ascending" ? 1 : -1;
+          }
+          return 0;
+        });
+
+        // Filteren
+        if (filters[region]) {
+          const filter = filters[region].toLowerCase();
+          data = data.filter(
+            (item) =>
+              item.Naam.toLowerCase().includes(filter) ||
+              item.Locatie.toLowerCase().includes(filter)
+          );
+        }
+
+        // Tabel leegmaken
+        tableBody.innerHTML = "";
+
+        // Resultaten tonen
+        if (data.length === 0) {
+          noResults.style.display = "block";
+        } else {
+          noResults.style.display = "none";
+
+          data.forEach((item, index) => {
+            const row = document.createElement("tr");
+
+            // Bepaal kleur voor cijfer
+            let cijferClass = "";
+            if (item.Cijfer >= 9) {
+              cijferClass = "rating-high";
+            } else if (item.Cijfer >= 7) {
+              cijferClass = "rating-medium";
+            } else {
+              cijferClass = "rating-low";
+            }
+
+            row.innerHTML = `
+            <td>${item.Naam}</td>
+            <td>${item.Locatie}</td>
+            <td>${item.Afstand}</td>
+            <td class="${cijferClass}">${item.Cijfer.toFixed(1)}</td>
+            <td>${item["Aantal Waarderingen"]}</td>
+          `;
+
+            tableBody.appendChild(row);
+          });
+        }
+
+        // Bijwerken aantal weergegeven resultaten
+        totalDisplayed.textContent = data.length;
+
+        // Bijwerken sorteerindicatoren
+        const headers = document.querySelectorAll(`#${region}Table th`);
+        headers.forEach((header) => {
+          const key = header.getAttribute("data-sort");
+          const sortIcon = header.querySelector(".sort-icon");
+
+          if (key === sortConfig[region].key) {
+            sortIcon.textContent =
+              sortConfig[region].direction === "ascending" ? "↑" : "↓";
+          } else {
+            sortIcon.textContent = "↕️";
+          }
+        });
+      }
+
+      // Functie om CSV te downloaden
+      function downloadCSV(region) {
+        // Data ophalen
+        let data = [...zorghuizenData[region]];
+
+        // Filter toepassen als er een zoekfilter is
+        if (filters[region]) {
+          const filter = filters[region].toLowerCase();
+          data = data.filter(
+            (item) =>
+              item.Naam.toLowerCase().includes(filter) ||
+              item.Locatie.toLowerCase().includes(filter)
+          );
+        }
+
+        // CSV header maken
+        let csv = "Naam,Locatie,Afstand,Cijfer,Aantal Waarderingen\n";
+
+        // CSV rijen toevoegen
+        data.forEach((item) => {
+          csv += `"${item.Naam}","${item.Locatie}",${item.Afstand},${item.Cijfer},${item["Aantal Waarderingen"]}\n`;
+        });
+
+        // CSV downloaden
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", `zorghuizen-${region}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // Initialiseer dashboard en event listeners
+      function initDashboard() {
+        // Laad data
+        loadData();
+
+        // Event listeners voor sortering
+        document
+          .querySelectorAll("#arnhemTable th, #nijmegenTable th")
+          .forEach((header) => {
+            header.addEventListener("click", function () {
+              const region = this.closest("table").id.replace("Table", "");
+              const key = this.getAttribute("data-sort");
+
+              // Wijzig sorteerrichting
+              if (sortConfig[region].key === key) {
+                sortConfig[region].direction =
+                  sortConfig[region].direction === "ascending"
+                    ? "descending"
+                    : "ascending";
+              } else {
+                sortConfig[region].key = key;
+                sortConfig[region].direction = "ascending";
+              }
+
+              // Tabel bijwerken
+              populateTable(region);
+            });
+          });
+
+        // Event listeners voor zoekfilters
+        document
+          .getElementById("searchArnhem")
+          .addEventListener("input", function () {
+            filters.arnhem = this.value;
+            populateTable("arnhem");
+          });
+
+        document
+          .getElementById("searchNijmegen")
+          .addEventListener("input", function () {
+            filters.nijmegen = this.value;
+            populateTable("nijmegen");
+          });
+
+        // Event listeners voor CSV-downloads
+        document
+          .getElementById("downloadCsvArnhem")
+          .addEventListener("click", function () {
+            downloadCSV("arnhem");
+          });
+
+        document
+          .getElementById("downloadCsvNijmegen")
+          .addEventListener("click", function () {
+            downloadCSV("nijmegen");
+          });
+      }
+
+      // Start dashboard wanneer pagina geladen is
+      document.addEventListener("DOMContentLoaded", initDashboard);
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome voor de download-icoon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  </body>
 </html>

@@ -1,0 +1,821 @@
+[
+  {
+    "Naam": "RijnWaal Zorggroep, locatie Sint Jozef",
+    "Locatie": "Lent",
+    "Afstand": "6 km",
+    "Cijfer": 9.5,
+    "Aantal Waarderingen": 34,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "ZZG Zorggroep, Woonlocatie Meerstaete",
+    "Locatie": "Wijchen",
+    "Afstand": "8 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 30,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "ZZG zorggroep",
+    "Locatie": "Groesbeek",
+    "Afstand": "4 km",
+    "Cijfer": 9.0,
+    "Aantal Waarderingen": 2285,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "De Waalboog, locatie De Honinghoeve",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 50,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Kalorama",
+    "Locatie": "Beek-Ubbergen",
+    "Afstand": "6 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Zorgcentrum Huize Rosa",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "BrabantZorg, Catharinahof",
+    "Locatie": "Grave",
+    "Afstand": "9 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 36,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "De Waalboog",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 283,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Stichting Zorgcentrum Huize Rosa",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 135,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Pantein Castella",
+    "Locatie": "Cuijk",
+    "Afstand": "10 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 115,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "De Waalboog, locatie Nijevelt",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 58,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "OBG",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 120,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "zorggroep Maas en Waal, locatie Alde Steeg",
+    "Locatie": "Beuningen",
+    "Afstand": "7 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 84,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "De Waalboog, locatie La Verna",
+    "Locatie": "Wijchen",
+    "Afstand": "6 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 76,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "De Waalboog, locatie Joachim en Anna",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 64,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "OBG, Verpleeghuiszorg",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 56,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "ZZG zorggroep, ZZG Herstelcentrum",
+    "Locatie": "Groesbeek",
+    "Afstand": "4 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 47,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Malderburch, Centrum voor Welzijn, Wonen en Zorg",
+    "Locatie": "Malden",
+    "Afstand": "4 km",
+    "Cijfer": 7.1,
+    "Aantal Waarderingen": 54,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "ZZG Zorggroep, Woonlocatie De Passerel",
+    "Locatie": "Wijchen",
+    "Afstand": "8 km",
+    "Cijfer": 10,
+    "Aantal Waarderingen": 1,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie Mookerhof",
+    "Locatie": "Mook",
+    "Afstand": "7 km",
+    "Cijfer": 10,
+    "Aantal Waarderingen": 1,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen?d=10"
+  },
+  {
+    "Naam": "Liemerije, De Meridiaan",
+    "Locatie": "Westervoort",
+    "Afstand": "17 km",
+    "Cijfer": 8.7,
+    "Aantal Waarderingen": 42,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Attent Zorg en Behandeling, De Boomgaard",
+    "Locatie": "Rheden",
+    "Afstand": "25 km",
+    "Cijfer": 8.7,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Vilente Pieter Pauw",
+    "Locatie": "Wageningen",
+    "Afstand": "21 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 79,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "De Waalboog, locatie De Honinghoeve",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 50,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Kalorama",
+    "Locatie": "Beek-Ubbergen",
+    "Afstand": "6 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Pleyade, locatie Thuvine",
+    "Locatie": "Duiven",
+    "Afstand": "20 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Zorgcentrum Huize Rosa",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 38,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "BrabantZorg, Catharinahof",
+    "Locatie": "Grave",
+    "Afstand": "9 km",
+    "Cijfer": 8.6,
+    "Aantal Waarderingen": 36,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "zorggroep Maas en Waal",
+    "Locatie": "Beneden-Leeuwen",
+    "Afstand": "23 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 463,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Pleyade",
+    "Locatie": "Arnhem",
+    "Afstand": "16 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 422,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Stichting Samen Zorgen",
+    "Locatie": "Heteren",
+    "Afstand": "17 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 205,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Innoforte, 't Jagthuis",
+    "Locatie": "Velp",
+    "Afstand": "23 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 119,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Charim, locatie De Tollekamp",
+    "Locatie": "Rhenen",
+    "Afstand": "25 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 95,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Opella Verpleeghuis Walraven",
+    "Locatie": "Bennekom",
+    "Afstand": "25 km",
+    "Cijfer": 8.5,
+    "Aantal Waarderingen": 37,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Vilente Mooi-Land",
+    "Locatie": "Doorwerth",
+    "Afstand": "20 km",
+    "Cijfer": 8.4,
+    "Aantal Waarderingen": 45,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Pantein De Lookant",
+    "Locatie": "Wanroij",
+    "Afstand": "17 km",
+    "Cijfer": 8.4,
+    "Aantal Waarderingen": 34,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep",
+    "Locatie": "Arnhem",
+    "Afstand": "19 km",
+    "Cijfer": 8.3,
+    "Aantal Waarderingen": 662,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Liemerije",
+    "Locatie": "Zevenaar",
+    "Afstand": "22 km",
+    "Cijfer": 8.3,
+    "Aantal Waarderingen": 521,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Zinzia Zorggroep, Verpleeghuis Rumah Kita",
+    "Locatie": "Wageningen",
+    "Afstand": "21 km",
+    "Cijfer": 8.3,
+    "Aantal Waarderingen": 73,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "Liemerije, Droostaete",
+    "Locatie": "Duiven",
+    "Afstand": "19 km",
+    "Cijfer": 8.3,
+    "Aantal Waarderingen": 49,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina2?d=25"
+  },
+  {
+    "Naam": "De Waalboog",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 283,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Stichting Zorgcentrum Huize Rosa",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 135,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "zorggroep Maas en Waal, locatie St. Elisabeth",
+    "Locatie": "Beneden-Leeuwen",
+    "Afstand": "23 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 135,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Pantein Castella",
+    "Locatie": "Cuijk",
+    "Afstand": "10 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 115,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Stichting Samen Zorgen, Zorgcentrum Liefkenshoek",
+    "Locatie": "Heteren",
+    "Afstand": "17 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 113,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Innoforte, Oosterwolde",
+    "Locatie": "Velp",
+    "Afstand": "23 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 70,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "De Waalboog, locatie Nijevelt",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 58,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Zorggroep Maas en Waal, locatie De Kasteelhof",
+    "Locatie": "Druten",
+    "Afstand": "18 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 58,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Pleyade, locatie Waalstaete",
+    "Locatie": "Arnhem",
+    "Afstand": "20 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 43,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Opella Woon- en zorgcentrum De Nudehof",
+    "Locatie": "Wageningen",
+    "Afstand": "21 km",
+    "Cijfer": 8.2,
+    "Aantal Waarderingen": 35,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "OBG",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 120,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "zorggroep Maas en Waal, locatie Alde Steeg",
+    "Locatie": "Beuningen",
+    "Afstand": "7 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 84,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Pantein Op 't Hoogveld",
+    "Locatie": "Sint Anthonis",
+    "Afstand": "21 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 50,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep, Woonzorgcentrum Drie Gasthuizen",
+    "Locatie": "Arnhem",
+    "Afstand": "21 km",
+    "Cijfer": 8.1,
+    "Aantal Waarderingen": 43,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Zorgcentra Pantein",
+    "Locatie": "Beugen",
+    "Afstand": "18 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 565,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Liemerije, Zevenaar",
+    "Locatie": "Zevenaar",
+    "Afstand": "22 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 125,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Sint Anna",
+    "Locatie": "Boxmeer",
+    "Afstand": "20 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 83,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "De Waalboog, locatie La Verna",
+    "Locatie": "Wijchen",
+    "Afstand": "6 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 76,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Innoforte, De Biesdel",
+    "Locatie": "Velp",
+    "Afstand": "23 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 72,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "De Waalboog, locatie Joachim en Anna",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 64,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina3?d=25"
+  },
+  {
+    "Naam": "Vilente, Vegetarisch Zorgcentrum Felixoord",
+    "Locatie": "Oosterbeek",
+    "Afstand": "20 km",
+    "Cijfer": 8.0,
+    "Aantal Waarderingen": 39,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Innoforte",
+    "Locatie": "Velp",
+    "Afstand": "23 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 809,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Innoforte, Lorentzhuis",
+    "Locatie": "Velp",
+    "Afstand": "22 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 139,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Liemerije, Meulenvelden",
+    "Locatie": "Didam",
+    "Afstand": "25 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 99,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Laverhof, locatie Het Retraitehuis",
+    "Locatie": "Uden",
+    "Afstand": "23 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 94,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "OBG, Verpleeghuiszorg",
+    "Locatie": "Nijmegen",
+    "Afstand": "3 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 56,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Pantein Symfonie",
+    "Locatie": "Boxmeer",
+    "Afstand": "19 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 53,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, ZZG Herstelcentrum",
+    "Locatie": "Groesbeek",
+    "Afstand": "4 km",
+    "Cijfer": 7.9,
+    "Aantal Waarderingen": 47,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Zinzia Zorggroep",
+    "Locatie": "Wageningen",
+    "Afstand": "20 km",
+    "Cijfer": 7.8,
+    "Aantal Waarderingen": 473,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep, Verpleeghuis Heijendaal",
+    "Locatie": "Arnhem",
+    "Afstand": "20 km",
+    "Cijfer": 7.8,
+    "Aantal Waarderingen": 77,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Liemerije, Hamerstaete",
+    "Locatie": "Westervoort",
+    "Afstand": "19 km",
+    "Cijfer": 7.8,
+    "Aantal Waarderingen": 44,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Liemerije, Heukelumshof",
+    "Locatie": "Pannerden",
+    "Afstand": "16 km",
+    "Cijfer": 7.8,
+    "Aantal Waarderingen": 31,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep, locatie Insula Dei",
+    "Locatie": "Arnhem",
+    "Afstand": "21 km",
+    "Cijfer": 7.7,
+    "Aantal Waarderingen": 196,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Pantein Norbertushof",
+    "Locatie": "Genep",
+    "Afstand": "16 km",
+    "Cijfer": 7.7,
+    "Aantal Waarderingen": 95,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Zinzia Zorggroep, Verpleeghuis Oranje Nassau's Oord",
+    "Locatie": "Wageningen",
+    "Afstand": "20 km",
+    "Cijfer": 7.6,
+    "Aantal Waarderingen": 115,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Pantein Aldenhorst",
+    "Locatie": "Mill",
+    "Afstand": "14 km",
+    "Cijfer": 7.6,
+    "Aantal Waarderingen": 32,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Innoforte, Vreedenhoff",
+    "Locatie": "Velp",
+    "Afstand": "21 km",
+    "Cijfer": 7.4,
+    "Aantal Waarderingen": 241,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Herstelkliniek Pantein",
+    "Locatie": "Boxmeer",
+    "Afstand": "19 km",
+    "Cijfer": 7.4,
+    "Aantal Waarderingen": 89,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep, locatie Huize Kohlmann",
+    "Locatie": "Arnhem",
+    "Afstand": "21 km",
+    "Cijfer": 7.4,
+    "Aantal Waarderingen": 44,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "Zinzia Zorggroep, Verpleeghuis De Lingehof",
+    "Locatie": "Bemmel",
+    "Afstand": "10 km",
+    "Cijfer": 7.2,
+    "Aantal Waarderingen": 53,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina4?d=25"
+  },
+  {
+    "Naam": "BrabantZorg, De Pastorie",
+    "Locatie": "Volkel",
+    "Afstand": "23 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 15,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie Campanula",
+    "Locatie": "Lent",
+    "Afstand": "7 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 13,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "BrabantZorg, Vierhoven",
+    "Locatie": "Schaijk",
+    "Afstand": "16 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 11,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie De Hagert",
+    "Locatie": "Wijchen",
+    "Afstand": "10 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 5,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "Zorgcentra De Betuwe, Elim",
+    "Locatie": "Ochten",
+    "Afstand": "21 km",
+    "Cijfer": 9.1,
+    "Aantal Waarderingen": 3,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "DrieGasthuizenGroep, Zorgappartementen Klingelpoort",
+    "Locatie": "Arnhem",
+    "Afstand": "19 km",
+    "Cijfer": 9.0,
+    "Aantal Waarderingen": 20,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie Aaron",
+    "Locatie": "Lent",
+    "Afstand": "6 km",
+    "Cijfer": 9.0,
+    "Aantal Waarderingen": 11,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "Betuwehof Zorg",
+    "Locatie": "Opheusden",
+    "Afstand": "20 km",
+    "Cijfer": 9.0,
+    "Aantal Waarderingen": 10,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "BrabantZorg, Sint Antonius",
+    "Locatie": "Volkel",
+    "Afstand": "23 km",
+    "Cijfer": 8.9,
+    "Aantal Waarderingen": 28,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie Bosrand",
+    "Locatie": "Groesbeek",
+    "Afstand": "5 km",
+    "Cijfer": 8.9,
+    "Aantal Waarderingen": 15,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  },
+  {
+    "Naam": "ZZG zorggroep, Woonlocatie De Meent",
+    "Locatie": "Groesbeek",
+    "Afstand": "8 km",
+    "Cijfer": 8.9,
+    "Aantal Waarderingen": 15,
+    "Regio": "Nijmegen",
+    "Url": "https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis/nijmegen/pagina6?d=25"
+  }
+]
