@@ -1,0 +1,37 @@
+/* style.css (Vereenvoudigd) */
+
+/* Basis stijlen en layout helpers */
+.card {
+  margin-bottom: 20px;
+  height: 100%; /* Zorg dat kaarten in een rij even hoog zijn indien nodig */
+}
+
+/* Verwijderd: .table-container, .controls-row, .search-input, .download-btn */
+/* Verwijderd: .table th, .sort-icon */
+
+/* Rating kleuren (kunnen blijven als ze elders gebruikt worden, anders ook weg) */
+/* .rating-high { ... } */
+/* .rating-medium { ... } */
+/* .rating-low { ... } */
+/* .rating-na { ... } */
+
+/* Status indicatoren (kunnen blijven voor dashboard-data laden, anders weg) */
+/* .loading { ... } */
+/* .error-message { ... } */
+
+/* Kleine aanpassingen */
+.card-text .fas {
+  /* Stijl voor het externe link icoon */
+  font-size: 0.8em; /* Iets kleiner maken */
+  margin-left: 3px;
+}
+
+/* Voeg eventueel andere benodigde stijlen toe */
+.border-top {
+  /* Stijl voor de optionele footer lijn */
+  border-top: 1px solid #dee2e6 !important; /* Bootstrap's light gray */
+}
+.pt-3 {
+  /* Padding top voor de optionele footer lijn */
+  padding-top: 1rem !important;
+}
