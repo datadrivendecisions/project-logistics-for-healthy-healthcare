@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Zorgcapaciteit Dashboard</title>
-    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+      defer
+    ></script>
+
     <style>
       .card {
         margin-bottom: 20px;
@@ -21,21 +36,28 @@
         display: inline-block;
         cursor: pointer;
         margin-left: 5px;
+        width: 1em; /* Give it some consistent width */
+        text-align: center;
       }
       .table th {
         cursor: pointer;
+        white-space: nowrap; /* Prevent header text wrapping */
       }
       .rating-high {
-        color: #28a745;
+        color: #198754; /* Bootstrap 5 Success Green */
         font-weight: bold;
       }
       .rating-medium {
-        color: #ffc107;
+        color: #ffc107; /* Bootstrap 5 Warning Yellow */
         font-weight: bold;
       }
       .rating-low {
-        color: #dc3545;
+        color: #dc3545; /* Bootstrap 5 Danger Red */
         font-weight: bold;
+      }
+      .rating-na {
+        color: #6c757d; /* Bootstrap 5 Secondary Gray */
+        font-style: italic;
       }
       .download-btn {
         margin-bottom: 20px;
@@ -48,10 +70,24 @@
       }
       .error-message {
         color: #dc3545;
-        padding: 15px;
-        border: 1px solid #dc3545;
-        border-radius: 4px;
+        background-color: #f8d7da; /* Light red background */
+        border-color: #f5c2c7; /* Darker red border */
+        padding: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
         margin-bottom: 20px;
+      }
+      /* Align search and download button nicely */
+      .controls-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        gap: 10px; /* Add some space between items */
+      }
+      .search-input {
+        flex-grow: 1; /* Allow search input to take available space */
+        min-width: 200px; /* Ensure it doesn't get too small */
       }
     </style>
   </head>
@@ -59,105 +95,103 @@
     <div class="container">
       <h1 class="mt-4 mb-4 text-center">Zorgcapaciteit Dashboard</h1>
 
-      <!-- Nav tabs for regions -->
       <ul class="nav nav-tabs" id="regionTab" role="tablist">
-        <li class="nav-item">
-          <a
+        <li class="nav-item" role="presentation">
+          <button
             class="nav-link active"
             id="arnhem-tab"
-            data-toggle="tab"
-            href="#arnhem"
+            data-bs-toggle="tab"
+            data-bs-target="#arnhem"
+            type="button"
             role="tab"
             aria-controls="arnhem"
             aria-selected="true"
-            >Arnhem</a
           >
+            Arnhem
+          </button>
         </li>
-        <li class="nav-item">
-          <a
+        <li class="nav-item" role="presentation">
+          <button
             class="nav-link"
             id="nijmegen-tab"
-            data-toggle="tab"
-            href="#nijmegen"
+            data-bs-toggle="tab"
+            data-bs-target="#nijmegen"
+            type="button"
             role="tab"
             aria-controls="nijmegen"
             aria-selected="false"
-            >Nijmegen</a
           >
+            Nijmegen
+          </button>
         </li>
       </ul>
 
       <div class="tab-content" id="regionTabContent">
-        <!-- Arnhem Dashboard -->
         <div
           class="tab-pane fade show active"
           id="arnhem"
           role="tabpanel"
           aria-labelledby="arnhem-tab"
+          tabindex="0"
         >
           <div class="row mt-4">
-            <!-- Nursing Home Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-primary text-white">
-                  Nursing Home Beds (Arnhem)
+                  Verpleeghuis Bedden (Arnhem)
                 </div>
                 <div class="card-body">
                   <h3 id="nursingHomeBedsArnhem" class="card-title">0</h3>
                   <p class="card-text">
-                    Available beds in
-                    <span id="totalNursingHomesArnhem">0</span> nursing homes.
+                    Beschikbare bedden in
+                    <span id="totalNursingHomesArnhem">0</span> verpleeghuizen.
                   </p>
                 </div>
               </div>
             </div>
-            <!-- First-Line Stay (ELV) Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-success text-white">
-                  First-Line Stay (ELV) Beds (Arnhem)
+                  Eerstelijnsverblijf (ELV) Bedden (Arnhem)
                 </div>
                 <div class="card-body">
                   <h3 id="firstLineBedsArnhem" class="card-title">0</h3>
-                  <p class="card-text">Available first-line (ELV) beds.</p>
+                  <p class="card-text">Beschikbare ELV-bedden.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <!-- Crisis Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-danger text-white">
-                  Crisis Beds (Arnhem)
+                  Crisis Bedden (Arnhem)
                 </div>
                 <div class="card-body">
                   <h3 id="crisisBedsArnhem" class="card-title">0</h3>
-                  <p class="card-text">Available crisis beds.</p>
+                  <p class="card-text">Beschikbare crisisbedden.</p>
                 </div>
               </div>
             </div>
-            <!-- Waiting Times and Occupancy Rates -->
             <div class="col-md-6">
               <div class="card">
-                <div class="card-header bg-warning text-white">
-                  Waiting Times &amp; Occupancy Rates (Arnhem)
+                <div class="card-header bg-warning text-dark">
+                  Wachttijden &amp; Bezettingsgraad (Arnhem)
                 </div>
                 <div class="card-body">
                   <p id="waitingTimeArnhem" class="card-text">
-                    Waiting Time: 0 days
+                    Wachttijd: 0 dagen
                   </p>
                   <p id="occupancyRateArnhem" class="card-text">
-                    Occupancy Rate: 0%
+                    Bezettingsgraad: 0%
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Search and CSV Download for Arnhem -->
-          <div class="row mt-4 mb-3">
-            <div class="col-md-6">
+          <div class="row mt-4 mb-3 controls-row">
+            <div class="search-input">
               <input
                 type="text"
                 id="searchArnhem"
@@ -165,17 +199,16 @@
                 placeholder="Zoeken op naam of locatie..."
               />
             </div>
-            <div class="col-md-6 text-right">
+            <div>
               <button
                 id="downloadCsvArnhem"
                 class="btn btn-success download-btn"
               >
-                <i class="fa fa-download"></i> Download CSV
+                <i class="fas fa-download"></i> Download CSV
               </button>
             </div>
           </div>
 
-          <!-- Arnhem Table -->
           <div id="arnhemLoadingIndicator" class="loading">
             Gegevens worden geladen...
           </div>
@@ -187,12 +220,15 @@
             Er is een fout opgetreden bij het laden van de gegevens.
           </div>
           <div
-            class="table-container"
+            class="table-responsive"
             id="arnhemTableContainer"
             style="display: none"
           >
-            <table id="arnhemTable" class="table table-striped table-bordered">
-              <thead class="thead-light">
+            <table
+              id="arnhemTable"
+              class="table table-striped table-bordered table-hover"
+            >
+              <thead class="table-light">
                 <tr>
                   <th data-sort="Naam">
                     Naam <span class="sort-icon">↕️</span>
@@ -207,13 +243,11 @@
                     Cijfer <span class="sort-icon">↕️</span>
                   </th>
                   <th data-sort="Aantal Waarderingen">
-                    Aantal Waarderingen <span class="sort-icon">↕️</span>
+                    Waarderingen <span class="sort-icon">↕️</span>
                   </th>
                 </tr>
               </thead>
-              <tbody id="arnhemTableBody">
-                <!-- Table data will be populated by JavaScript -->
-              </tbody>
+              <tbody id="arnhemTableBody"></tbody>
             </table>
             <div
               id="arnhemNoResults"
@@ -224,7 +258,7 @@
             </div>
           </div>
 
-          <div class="text-muted small">
+          <div class="text-muted small mt-3">
             Bron:
             <a
               href="https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis"
@@ -234,82 +268,78 @@
               ZorgkaartNederland.nl
             </a>
             <p class="mt-1">
-              Totaal aantal zorghuizen weergegeven:
+              Aantal zorghuizen weergegeven:
               <span id="totalDisplayedArnhem">0</span>
             </p>
           </div>
         </div>
 
-        <!-- Nijmegen Dashboard -->
         <div
           class="tab-pane fade"
           id="nijmegen"
           role="tabpanel"
           aria-labelledby="nijmegen-tab"
+          tabindex="0"
         >
           <div class="row mt-4">
-            <!-- Nursing Home Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-primary text-white">
-                  Nursing Home Beds (Nijmegen)
+                  Verpleeghuis Bedden (Nijmegen)
                 </div>
                 <div class="card-body">
                   <h3 id="nursingHomeBedsNijmegen" class="card-title">0</h3>
                   <p class="card-text">
-                    Available beds in
-                    <span id="totalNursingHomesNijmegen">0</span> nursing homes.
+                    Beschikbare bedden in
+                    <span id="totalNursingHomesNijmegen">0</span>
+                    verpleeghuizen.
                   </p>
                 </div>
               </div>
             </div>
-            <!-- First-Line Stay (ELV) Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-success text-white">
-                  First-Line Stay (ELV) Beds (Nijmegen)
+                  Eerstelijnsverblijf (ELV) Bedden (Nijmegen)
                 </div>
                 <div class="card-body">
                   <h3 id="firstLineBedsNijmegen" class="card-title">0</h3>
-                  <p class="card-text">Available first-line (ELV) beds.</p>
+                  <p class="card-text">Beschikbare ELV-bedden.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <!-- Crisis Beds -->
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header bg-danger text-white">
-                  Crisis Beds (Nijmegen)
+                  Crisis Bedden (Nijmegen)
                 </div>
                 <div class="card-body">
                   <h3 id="crisisBedsNijmegen" class="card-title">0</h3>
-                  <p class="card-text">Available crisis beds.</p>
+                  <p class="card-text">Beschikbare crisisbedden.</p>
                 </div>
               </div>
             </div>
-            <!-- Waiting Times and Occupancy Rates -->
             <div class="col-md-6">
               <div class="card">
-                <div class="card-header bg-warning text-white">
-                  Waiting Times &amp; Occupancy Rates (Nijmegen)
+                <div class="card-header bg-warning text-dark">
+                  Wachttijden &amp; Bezettingsgraad (Nijmegen)
                 </div>
                 <div class="card-body">
                   <p id="waitingTimeNijmegen" class="card-text">
-                    Waiting Time: 0 days
+                    Wachttijd: 0 dagen
                   </p>
                   <p id="occupancyRateNijmegen" class="card-text">
-                    Occupancy Rate: 0%
+                    Bezettingsgraad: 0%
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Search and CSV Download for Nijmegen -->
-          <div class="row mt-4 mb-3">
-            <div class="col-md-6">
+          <div class="row mt-4 mb-3 controls-row">
+            <div class="search-input">
               <input
                 type="text"
                 id="searchNijmegen"
@@ -317,17 +347,16 @@
                 placeholder="Zoeken op naam of locatie..."
               />
             </div>
-            <div class="col-md-6 text-right">
+            <div>
               <button
                 id="downloadCsvNijmegen"
                 class="btn btn-success download-btn"
               >
-                <i class="fa fa-download"></i> Download CSV
+                <i class="fas fa-download"></i> Download CSV
               </button>
             </div>
           </div>
 
-          <!-- Nijmegen Table -->
           <div id="nijmegenLoadingIndicator" class="loading">
             Gegevens worden geladen...
           </div>
@@ -339,15 +368,15 @@
             Er is een fout opgetreden bij het laden van de gegevens.
           </div>
           <div
-            class="table-container"
+            class="table-responsive"
             id="nijmegenTableContainer"
             style="display: none"
           >
             <table
               id="nijmegenTable"
-              class="table table-striped table-bordered"
+              class="table table-striped table-bordered table-hover"
             >
-              <thead class="thead-light">
+              <thead class="table-light">
                 <tr>
                   <th data-sort="Naam">
                     Naam <span class="sort-icon">↕️</span>
@@ -362,13 +391,11 @@
                     Cijfer <span class="sort-icon">↕️</span>
                   </th>
                   <th data-sort="Aantal Waarderingen">
-                    Aantal Waarderingen <span class="sort-icon">↕️</span>
+                    Waarderingen <span class="sort-icon">↕️</span>
                   </th>
                 </tr>
               </thead>
-              <tbody id="nijmegenTableBody">
-                <!-- Table data will be populated by JavaScript -->
-              </tbody>
+              <tbody id="nijmegenTableBody"></tbody>
             </table>
             <div
               id="nijmegenNoResults"
@@ -379,7 +406,7 @@
             </div>
           </div>
 
-          <div class="text-muted small">
+          <div class="text-muted small mt-3">
             Bron:
             <a
               href="https://www.zorgkaartnederland.nl/verpleeghuis-en-verzorgingshuis"
@@ -389,7 +416,7 @@
               ZorgkaartNederland.nl
             </a>
             <p class="mt-1">
-              Totaal aantal zorghuizen weergegeven:
+              Aantal zorghuizen weergegeven:
               <span id="totalDisplayedNijmegen">0</span>
             </p>
           </div>
@@ -397,226 +424,339 @@
       </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-      // Data containers
-      let zorghuizenData = {
+      // --- Constants and State ---
+      const zorghuizenData = {
         arnhem: [],
         nijmegen: [],
       };
 
-      // Dashboard data
+      // Default dashboard data structure
       let dashboardData = {
         arnhem: {
-          nursingHomeBeds: 0,
-          firstLineBeds: 0,
-          crisisBeds: 0,
-          waitingTime: 0,
-          occupancyRate: 0,
+          nursingHomeBeds: "N/A",
+          firstLineBeds: "N/A",
+          crisisBeds: "N/A",
+          waitingTime: "N/A",
+          occupancyRate: "N/A",
           totalNursingHomes: 0,
         },
         nijmegen: {
-          nursingHomeBeds: 0,
-          firstLineBeds: 0,
-          crisisBeds: 0,
-          waitingTime: 0,
-          occupancyRate: 0,
+          nursingHomeBeds: "N/A",
+          firstLineBeds: "N/A",
+          crisisBeds: "N/A",
+          waitingTime: "N/A",
+          occupancyRate: "N/A",
           totalNursingHomes: 0,
         },
       };
 
-      // Sorteerinstellingen
       const sortConfig = {
         arnhem: { key: "Cijfer", direction: "descending" },
         nijmegen: { key: "Cijfer", direction: "descending" },
       };
 
-      // Zoekfilters
       const filters = {
         arnhem: "",
         nijmegen: "",
       };
 
-      // Functie om data te laden uit JSON-bestanden
-      async function loadData() {
-        try {
-          // Laad dashboard data
-          const dashboardResponse = await fetch("dashboard-data.json");
-          if (!dashboardResponse.ok) {
-            throw new Error("Failed to load dashboard data");
-          }
-          const dashboardJson = await dashboardResponse.json();
-          dashboardData = dashboardJson;
+      // --- Helper Functions ---
 
-          // Update dashboard UI met geladen data
-          updateDashboardUI("arnhem");
-          updateDashboardUI("nijmegen");
-
-          // Arnhem zorghuizen data laden
-          await loadRegionData("arnhem", "verzorgingshuizen-arnhem.json");
-
-          // Nijmegen zorghuizen data laden (alleen bij tabwissel)
-          document
-            .getElementById("nijmegen-tab")
-            .addEventListener("click", async function () {
-              if (zorghuizenData.nijmegen.length === 0) {
-                await loadRegionData(
-                  "nijmegen",
-                  "verzorgingshuizen-nijmegen.json"
-                );
-              }
-            });
-        } catch (error) {
-          console.error("Error loading data:", error);
-          document.getElementById("arnhemErrorMessage").style.display = "block";
-          document.getElementById("arnhemLoadingIndicator").style.display =
-            "none";
-          document.getElementById("nijmegenErrorMessage").style.display =
-            "block";
-          document.getElementById("nijmegenLoadingIndicator").style.display =
-            "none";
+      // Safely update element text content
+      const updateElementText = (id, text) => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = text;
+        } else {
+          console.warn(`Element with ID ${id} not found.`);
         }
+      };
+
+      // Escape data for CSV format
+      const escapeCSV = (field) => {
+        const str = String(field ?? ""); // Convert null/undefined to empty string
+        // If field contains comma, quote, or newline, enclose in double quotes
+        if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+          // Escape existing double quotes by doubling them
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      };
+
+      // --- Core Logic Functions ---
+
+      // Load dashboard summary data (optional file)
+      async function loadDashboardSummary() {
+        try {
+          const response = await fetch("dashboard-data.json"); // Assume this file exists
+          if (!response.ok) {
+            console.warn(
+              `Could not load dashboard-data.json (Status: ${response.status}). Using default values.`
+            );
+            // Keep default dashboardData
+          } else {
+            const loadedData = await response.json();
+            // Merge loaded data with defaults to ensure structure
+            dashboardData.arnhem = {
+              ...dashboardData.arnhem,
+              ...loadedData.arnhem,
+            };
+            dashboardData.nijmegen = {
+              ...dashboardData.nijmegen,
+              ...loadedData.nijmegen,
+            };
+            console.log("Dashboard summary data loaded.");
+          }
+        } catch (error) {
+          console.warn(
+            `Error fetching or parsing dashboard-data.json: ${error}. Using default values.`
+          );
+          // Keep default dashboardData
+        }
+        // Update UI for both regions after attempting load
+        updateDashboardUI("arnhem");
+        updateDashboardUI("nijmegen");
       }
 
-      // Functie om regionele data te laden
+      // Load detailed data for a specific region
       async function loadRegionData(region, jsonFile) {
-        try {
-          document.getElementById(`${region}LoadingIndicator`).style.display =
-            "block";
-          document.getElementById(`${region}TableContainer`).style.display =
-            "none";
-          document.getElementById(`${region}ErrorMessage`).style.display =
-            "none";
+        const loadingIndicator = document.getElementById(
+          `${region}LoadingIndicator`
+        );
+        const tableContainer = document.getElementById(
+          `${region}TableContainer`
+        );
+        const errorMessage = document.getElementById(`${region}ErrorMessage`);
 
+        // Ensure elements exist before manipulating style
+        if (!loadingIndicator || !tableContainer || !errorMessage) {
+          console.error(`UI elements not found for region: ${region}`);
+          return;
+        }
+
+        console.log(`[${region}] Starting loadRegionData for ${jsonFile}`);
+        loadingIndicator.style.display = "block";
+        tableContainer.style.display = "none";
+        errorMessage.style.display = "none"; // Hide previous errors
+
+        try {
+          console.log(`[${region}] Fetching ${jsonFile}...`);
           const response = await fetch(jsonFile);
+          console.log(`[${region}] Fetch response status: ${response.status}`);
+
           if (!response.ok) {
-            throw new Error(`Failed to load ${region} data`);
+            throw new Error(
+              `Server response was not OK: ${response.status} ${response.statusText} for ${jsonFile}`
+            );
           }
 
+          console.log(`[${region}] Parsing JSON...`);
           const data = await response.json();
+          // Basic validation: check if it's an array
+          if (!Array.isArray(data)) {
+            throw new Error(`Data loaded from ${jsonFile} is not an array.`);
+          }
+          console.log(
+            `[${region}] JSON parsed successfully. Items: ${data.length}`
+          );
           zorghuizenData[region] = data;
 
-          // Bijwerken aantal verzorgingshuizen
-          dashboardData[region].totalNursingHomes = data.length;
-          document.getElementById(
-            `totalNursingHomes${
-              region.charAt(0).toUpperCase() + region.slice(1)
-            }`
-          ).textContent = data.length;
+          // --- NIEUW: Update het totaal aantal verpleeghuizen in de card ---
+          const totalCount = zorghuizenData[region].length;
+          const capitalizedRegion =
+            region.charAt(0).toUpperCase() + region.slice(1);
+          const totalHomesId = `totalNursingHomes${capitalizedRegion}`;
+          updateElementText(totalHomesId, totalCount.toString());
+          // --- EINDE NIEUW ---
 
-          // Tabel vullen met data
-          populateTable(region);
+          populateTable(region); // Populate table with new data
 
-          // Verberg laadindicator, toon tabel
-          document.getElementById(`${region}LoadingIndicator`).style.display =
-            "none";
-          document.getElementById(`${region}TableContainer`).style.display =
-            "block";
+          loadingIndicator.style.display = "none";
+          tableContainer.style.display = "block"; // Show table container (which includes table and no-results div)
+          console.log(`[${region}] Load successful, UI updated.`);
         } catch (error) {
-          console.error(`Error loading ${region} data:`, error);
-          document.getElementById(`${region}LoadingIndicator`).style.display =
-            "none";
-          document.getElementById(`${region}ErrorMessage`).style.display =
-            "block";
+          console.error(
+            `[${region}] ERROR in loadRegionData for ${jsonFile}:`,
+            error
+          );
+          loadingIndicator.style.display = "none";
+          // Provide a more user-friendly error message
+          errorMessage.textContent = `Fout bij laden data voor ${region} (${jsonFile}): ${error.message}. Controleer of het bestand bestaat en correct is. Zie console voor details.`;
+          errorMessage.style.display = "block";
+          zorghuizenData[region] = []; // Clear data on error
+
+          // --- NIEUW: Zet telling op 0 bij fout ---
+          const capitalizedRegionOnError =
+            region.charAt(0).toUpperCase() + region.slice(1);
+          const totalHomesIdOnError = `totalNursingHomes${capitalizedRegionOnError}`;
+          updateElementText(totalHomesIdOnError, "0");
+          // --- EINDE NIEUW ---
+
+          populateTable(region); // Re-populate to show 'no results' message
+          tableContainer.style.display = "block"; // Ensure container is visible to show the error/no-results
         }
       }
 
-      // Functie om dashboard UI te updaten met geladen data
+      // Update the summary cards
       function updateDashboardUI(region) {
         const data = dashboardData[region];
-        const capitalized = region.charAt(0).toUpperCase() + region.slice(1);
-
-        document.getElementById(`nursingHomeBeds${capitalized}`).textContent =
-          data.nursingHomeBeds;
-        document.getElementById(`firstLineBeds${capitalized}`).textContent =
-          data.firstLineBeds;
-        document.getElementById(`crisisBeds${capitalized}`).textContent =
-          data.crisisBeds;
-        document.getElementById(
-          `waitingTime${capitalized}`
-        ).textContent = `Waiting Time: ${data.waitingTime} days`;
-        document.getElementById(
-          `occupancyRate${capitalized}`
-        ).textContent = `Occupancy Rate: ${data.occupancyRate}%`;
-        document.getElementById(`totalNursingHomes${capitalized}`).textContent =
-          data.totalNursingHomes;
-      }
-
-      // Functie om tabel te vullen voor een regio
-      function populateTable(region) {
-        const tableBody = document.getElementById(`${region}TableBody`);
-        const noResults = document.getElementById(`${region}NoResults`);
-        const totalDisplayed = document.getElementById(
-          `totalDisplayed${region.charAt(0).toUpperCase() + region.slice(1)}`
-        );
-
-        // Sorteer en filter data
-        let data = [...zorghuizenData[region]];
-
-        // Sorteren
-        data.sort((a, b) => {
-          const key = sortConfig[region].key;
-          if (a[key] < b[key]) {
-            return sortConfig[region].direction === "ascending" ? -1 : 1;
-          }
-          if (a[key] > b[key]) {
-            return sortConfig[region].direction === "ascending" ? 1 : -1;
-          }
-          return 0;
-        });
-
-        // Filteren
-        if (filters[region]) {
-          const filter = filters[region].toLowerCase();
-          data = data.filter(
-            (item) =>
-              item.Naam.toLowerCase().includes(filter) ||
-              item.Locatie.toLowerCase().includes(filter)
-          );
+        if (!data) {
+          console.warn(`No dashboard data found for region: ${region}`);
+          return;
         }
 
-        // Tabel leegmaken
-        tableBody.innerHTML = "";
+        const capitalized = region.charAt(0).toUpperCase() + region.slice(1);
 
-        // Resultaten tonen
-        if (data.length === 0) {
-          noResults.style.display = "block";
-        } else {
-          noResults.style.display = "none";
+        updateElementText(
+          `nursingHomeBeds${capitalized}`,
+          data.nursingHomeBeds ?? "N/A"
+        );
+        updateElementText(
+          `firstLineBeds${capitalized}`,
+          data.firstLineBeds ?? "N/A"
+        );
+        updateElementText(`crisisBeds${capitalized}`, data.crisisBeds ?? "N/A");
+        updateElementText(
+          `waitingTime${capitalized}`,
+          `Wachttijd: ${data.waitingTime ?? "N/A"} dagen`
+        );
+        updateElementText(
+          `occupancyRate${capitalized}`,
+          `Bezettingsgraad: ${data.occupancyRate ?? "N/A"}%`
+        );
+        updateElementText(
+          `totalNursingHomes${capitalized}`,
+          data.totalNursingHomes?.toString() ?? "0"
+        );
+      }
 
-          data.forEach((item, index) => {
-            const row = document.createElement("tr");
+      // Populate the main table for a region
+      function populateTable(region) {
+        const tableBody = document.getElementById(`${region}TableBody`);
+        const noResultsDiv = document.getElementById(`${region}NoResults`);
+        const totalDisplayedSpan = document.getElementById(
+          `totalDisplayed${region.charAt(0).toUpperCase() + region.slice(1)}`
+        );
+        const tableContainer = document.getElementById(
+          `${region}TableContainer`
+        ); // Need this to hide/show table
 
-            // Bepaal kleur voor cijfer
-            let cijferClass = "";
-            if (item.Cijfer >= 9) {
-              cijferClass = "rating-high";
-            } else if (item.Cijfer >= 7) {
-              cijferClass = "rating-medium";
+        if (
+          !tableBody ||
+          !noResultsDiv ||
+          !totalDisplayedSpan ||
+          !tableContainer
+        ) {
+          console.error(`Table UI elements not found for region: ${region}`);
+          return;
+        }
+
+        tableBody.innerHTML = ""; // Clear previous results
+
+        let processedData = Array.isArray(zorghuizenData[region])
+          ? [...zorghuizenData[region]] // Create a copy to sort/filter
+          : [];
+
+        // Apply filtering
+        if (filters[region]) {
+          const filterText = filters[region].toLowerCase().trim();
+          if (filterText) {
+            processedData = processedData.filter(
+              (item) =>
+                (item.Naam && item.Naam.toLowerCase().includes(filterText)) ||
+                (item.Locatie &&
+                  item.Locatie.toLowerCase().includes(filterText))
+            );
+          }
+        }
+
+        // Apply sorting
+        try {
+          const { key, direction } = sortConfig[region];
+          processedData.sort((a, b) => {
+            let valA = a[key];
+            let valB = b[key];
+
+            // Handle numeric sort for Cijfer and Aantal Waarderingen
+            if (key === "Cijfer" || key === "Aantal Waarderingen") {
+              valA = valA !== null && !isNaN(valA) ? Number(valA) : -Infinity; // Treat non-numbers/null as very small
+              valB = valB !== null && !isNaN(valB) ? Number(valB) : -Infinity;
+            } else if (key === "Afstand") {
+              // Basic numeric sort for distance (assuming "X km" format or just number)
+              valA = parseFloat(String(valA)) ?? Infinity;
+              valB = parseFloat(String(valB)) ?? Infinity;
             } else {
-              cijferClass = "rating-low";
+              // Default string sort (case-insensitive)
+              valA = String(valA ?? "").toLowerCase(); // Handle null/undefined
+              valB = String(valB ?? "").toLowerCase();
             }
 
-            row.innerHTML = `
-            <td>${item.Naam}</td>
-            <td>${item.Locatie}</td>
-            <td>${item.Afstand}</td>
-            <td class="${cijferClass}">${item.Cijfer.toFixed(1)}</td>
-            <td>${item["Aantal Waarderingen"]}</td>
-          `;
+            if (valA < valB) return direction === "ascending" ? -1 : 1;
+            if (valA > valB) return direction === "ascending" ? 1 : -1;
+            return 0;
+          });
+        } catch (sortError) {
+          console.error(
+            `Error during sorting for region ${region}:`,
+            sortError
+          );
+          // Continue without sorting or with partially sorted data
+        }
 
-            tableBody.appendChild(row);
+        // Display results or 'no results' message
+        if (processedData.length === 0) {
+          noResultsDiv.style.display = "block";
+          tableBody.style.display = "none"; // Hide the tbody itself
+        } else {
+          noResultsDiv.style.display = "none";
+          tableBody.style.display = ""; // Show the tbody
+
+          processedData.forEach((item) => {
+            const row = tableBody.insertRow(); // More efficient than createElement + innerHTML
+
+            const cijferValue = item.Cijfer;
+            let cijferClass = "rating-na";
+            let displayCijfer = "N/A";
+
+            // FIXED: Check if Cijfer is a valid number before formatting
+            if (
+              cijferValue !== null &&
+              typeof cijferValue === "number" &&
+              !isNaN(cijferValue)
+            ) {
+              displayCijfer = cijferValue.toFixed(1);
+              if (cijferValue >= 8.5)
+                cijferClass = "rating-high"; // Adjusted thresholds slightly
+              else if (cijferValue >= 6.5) cijferClass = "rating-medium";
+              else cijferClass = "rating-low";
+            }
+
+            // Add cells safely, providing fallbacks
+            row.insertCell().textContent = item.Naam || "Onbekend";
+            row.insertCell().textContent = item.Locatie || "Onbekend";
+            row.insertCell().textContent =
+              item.Afstand != null ? `${item.Afstand} km` : "N/A"; // Assuming Afstand is just number
+            const cijferCell = row.insertCell();
+            cijferCell.textContent = displayCijfer;
+            cijferCell.className = cijferClass; // Apply class to the cell
+            row.insertCell().textContent = item["Aantal Waarderingen"] ?? "N/A";
           });
         }
 
-        // Bijwerken aantal weergegeven resultaten
-        totalDisplayed.textContent = data.length;
+        totalDisplayedSpan.textContent = processedData.length;
+        updateSortIcons(region);
+      }
 
-        // Bijwerken sorteerindicatoren
-        const headers = document.querySelectorAll(`#${region}Table th`);
+      // Update visual indicators on table headers for sorting
+      function updateSortIcons(region) {
+        const headers = document.querySelectorAll(
+          `#${region}Table th[data-sort]`
+        ); // Target only sortable headers
         headers.forEach((header) => {
           const key = header.getAttribute("data-sort");
           const sortIcon = header.querySelector(".sort-icon");
+          if (!sortIcon) return;
 
           if (key === sortConfig[region].key) {
             sortIcon.textContent =
@@ -627,106 +767,205 @@
         });
       }
 
-      // Functie om CSV te downloaden
-      function downloadCSV(region) {
-        // Data ophalen
-        let data = [...zorghuizenData[region]];
+      // Handle click on a table header for sorting
+      function handleSortClick(headerElement, region) {
+        if (!headerElement) return;
+        const key = headerElement.getAttribute("data-sort");
+        if (!key) return; // Clicked non-sortable part of header
 
-        // Filter toepassen als er een zoekfilter is
+        if (sortConfig[region].key === key) {
+          // Toggle direction
+          sortConfig[region].direction =
+            sortConfig[region].direction === "ascending"
+              ? "descending"
+              : "ascending";
+        } else {
+          // Sort new column, default descending for Cijfer/Waarderingen, ascending otherwise
+          sortConfig[region].key = key;
+          sortConfig[region].direction =
+            key === "Cijfer" || key === "Aantal Waarderingen"
+              ? "descending"
+              : "ascending";
+        }
+        populateTable(region); // Re-render table with new sort order
+      }
+
+      // Generate and trigger download of CSV file
+      function downloadCSV(region) {
+        let dataToExport = Array.isArray(zorghuizenData[region])
+          ? [...zorghuizenData[region]]
+          : [];
+
+        // Apply current filter to exported data
         if (filters[region]) {
-          const filter = filters[region].toLowerCase();
-          data = data.filter(
-            (item) =>
-              item.Naam.toLowerCase().includes(filter) ||
-              item.Locatie.toLowerCase().includes(filter)
-          );
+          const filterText = filters[region].toLowerCase().trim();
+          if (filterText) {
+            dataToExport = dataToExport.filter(
+              (item) =>
+                (item.Naam && item.Naam.toLowerCase().includes(filterText)) ||
+                (item.Locatie &&
+                  item.Locatie.toLowerCase().includes(filterText))
+            );
+          }
         }
 
-        // CSV header maken
-        let csv = "Naam,Locatie,Afstand,Cijfer,Aantal Waarderingen\n";
+        // Apply current sort order to exported data (optional, but good for consistency)
+        try {
+          const { key, direction } = sortConfig[region];
+          dataToExport.sort((a, b) => {
+            let valA = a[key];
+            let valB = b[key];
+            // Simple sort logic (repeat from populateTable or refactor)
+            if (key === "Cijfer" || key === "Aantal Waarderingen") {
+              valA = valA !== null && !isNaN(valA) ? Number(valA) : -Infinity;
+              valB = valB !== null && !isNaN(valB) ? Number(valB) : -Infinity;
+            } else if (key === "Afstand") {
+              valA = parseFloat(String(valA)) ?? Infinity;
+              valB = parseFloat(String(valB)) ?? Infinity;
+            } else {
+              valA = String(valA ?? "").toLowerCase();
+              valB = String(valB ?? "").toLowerCase();
+            }
+            if (valA < valB) return direction === "ascending" ? -1 : 1;
+            if (valA > valB) return direction === "ascending" ? 1 : -1;
+            return 0;
+          });
+        } catch (sortError) {
+          console.warn("Could not sort data for CSV export:", sortError);
+        }
 
-        // CSV rijen toevoegen
-        data.forEach((item) => {
-          csv += `"${item.Naam}","${item.Locatie}",${item.Afstand},${item.Cijfer},${item["Aantal Waarderingen"]}\n`;
+        const headers = [
+          "Naam",
+          "Locatie",
+          "Afstand (km)",
+          "Cijfer",
+          "Aantal Waarderingen",
+        ];
+        let csvContent = headers.map(escapeCSV).join(",") + "\n"; // Header row
+
+        dataToExport.forEach((item) => {
+          // FIXED: Check Cijfer before using toFixed()
+          const formattedCijfer =
+            item.Cijfer !== null &&
+            typeof item.Cijfer === "number" &&
+            !isNaN(item.Cijfer)
+              ? item.Cijfer.toFixed(1)
+              : ""; // Use empty string for N/A in CSV
+
+          const rowData = [
+            item.Naam,
+            item.Locatie,
+            item.Afstand, // Keep raw distance number
+            formattedCijfer,
+            item["Aantal Waarderingen"],
+          ];
+          csvContent += rowData.map(escapeCSV).join(",") + "\n";
         });
 
-        // CSV downloaden
-        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        // Create and trigger download link
+        const blob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", `zorghuizen-${region}.csv`);
-        document.body.appendChild(link);
+        link.setAttribute(
+          "download",
+          `zorgcapaciteit-${region}-${new Date()
+            .toISOString()
+            .slice(0, 10)}.csv`
+        ); // Add date
+        document.body.appendChild(link); // Required for Firefox
         link.click();
-        document.body.removeChild(link);
+        document.body.removeChild(link); // Clean up
+        URL.revokeObjectURL(url); // Release memory
       }
 
-      // Initialiseer dashboard en event listeners
+      // --- Initialization and Event Listeners ---
       function initDashboard() {
-        // Laad data
-        loadData();
+        console.log("Initializing Dashboard...");
 
-        // Event listeners voor sortering
+        // Load summary data first, then Arnhem data (default tab)
+        loadDashboardSummary()
+          .then(() => loadRegionData("arnhem", "zorginstellingen-arnhem.json")) // Adjust filename if needed
+          .catch((error) =>
+            console.error("Error during initial data load:", error)
+          );
+
+        // --- Event Listeners ---
+
+        // Tab switching - Load Nijmegen data only when tab is shown
+        const nijmegenTab = document.getElementById("nijmegen-tab");
+        if (nijmegenTab) {
+          nijmegenTab.addEventListener("shown.bs.tab", async (event) => {
+            console.log("[Nijmegen Tab] 'shown.bs.tab' event fired.");
+            // Check if data needs loading (only load once)
+            if (zorghuizenData.nijmegen.length === 0) {
+              console.log("[Nijmegen Tab] Data array empty, loading data...");
+              // Adjust filename if needed
+              await loadRegionData(
+                "nijmegen",
+                "zorginstellingen-nijmegen.json"
+              );
+            } else {
+              console.log(
+                "[Nijmegen Tab] Data already loaded, refreshing view."
+              );
+              // Re-populate in case filters/sort changed while tab was hidden
+              populateTable("nijmegen");
+            }
+          });
+        } else {
+          console.error("Nijmegen tab element not found!");
+        }
+
+        // Sorting (using event delegation on table containers)
         document
-          .querySelectorAll("#arnhemTable th, #nijmegenTable th")
-          .forEach((header) => {
-            header.addEventListener("click", function () {
-              const region = this.closest("table").id.replace("Table", "");
-              const key = this.getAttribute("data-sort");
-
-              // Wijzig sorteerrichting
-              if (sortConfig[region].key === key) {
-                sortConfig[region].direction =
-                  sortConfig[region].direction === "ascending"
-                    ? "descending"
-                    : "ascending";
-              } else {
-                sortConfig[region].key = key;
-                sortConfig[region].direction = "ascending";
-              }
-
-              // Tabel bijwerken
-              populateTable(region);
-            });
+          .getElementById("arnhemTableContainer")
+          ?.addEventListener("click", (event) => {
+            if (event.target.closest("th[data-sort]")) {
+              // Check if click was on a sortable header
+              handleSortClick(event.target.closest("th[data-sort]"), "arnhem");
+            }
+          });
+        document
+          .getElementById("nijmegenTableContainer")
+          ?.addEventListener("click", (event) => {
+            if (event.target.closest("th[data-sort]")) {
+              handleSortClick(
+                event.target.closest("th[data-sort]"),
+                "nijmegen"
+              );
+            }
           });
 
-        // Event listeners voor zoekfilters
+        // Search filters (using 'input' event for real-time filtering)
         document
           .getElementById("searchArnhem")
-          .addEventListener("input", function () {
+          ?.addEventListener("input", function () {
             filters.arnhem = this.value;
             populateTable("arnhem");
           });
-
         document
           .getElementById("searchNijmegen")
-          .addEventListener("input", function () {
+          ?.addEventListener("input", function () {
             filters.nijmegen = this.value;
             populateTable("nijmegen");
           });
 
-        // Event listeners voor CSV-downloads
+        // CSV Downloads
         document
           .getElementById("downloadCsvArnhem")
-          .addEventListener("click", function () {
-            downloadCSV("arnhem");
-          });
-
+          ?.addEventListener("click", () => downloadCSV("arnhem"));
         document
           .getElementById("downloadCsvNijmegen")
-          .addEventListener("click", function () {
-            downloadCSV("nijmegen");
-          });
+          ?.addEventListener("click", () => downloadCSV("nijmegen"));
+
+        console.log("Dashboard Initialized.");
       }
 
-      // Start dashboard wanneer pagina geladen is
+      // Start the application once the DOM is fully loaded
       document.addEventListener("DOMContentLoaded", initDashboard);
     </script>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome voor de download-icoon -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   </body>
 </html>
