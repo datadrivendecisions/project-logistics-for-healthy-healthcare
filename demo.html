@@ -245,6 +245,9 @@
                   <th data-sort="Aantal Waarderingen">
                     Waarderingen <span class="sort-icon">↕️</span>
                   </th>
+                  <th data-sort="Aantal Plaatsen">
+                    Aantal plaatsen <span class="sort-icon">↕️</span>
+                  </th>
                 </tr>
               </thead>
               <tbody id="arnhemTableBody"></tbody>
@@ -392,6 +395,9 @@
                   </th>
                   <th data-sort="Aantal Waarderingen">
                     Waarderingen <span class="sort-icon">↕️</span>
+                  </th>
+                  <th data-sort="Aantal Plaatsen">
+                    Aantal plaatsen <span class="sort-icon">↕️</span>
                   </th>
                 </tr>
               </thead>
@@ -686,6 +692,10 @@
               // Basic numeric sort for distance (assuming "X km" format or just number)
               valA = parseFloat(String(valA)) ?? Infinity;
               valB = parseFloat(String(valB)) ?? Infinity;
+            } else if (key === "Afstand") {
+              // Basic numeric sort for distance (assuming "X km" format or just number)
+              valA = parseFloat(String(valA)) ?? Infinity;
+              valB = parseFloat(String(valB)) ?? Infinity;
             } else {
               // Default string sort (case-insensitive)
               valA = String(valA ?? "").toLowerCase(); // Handle null/undefined
@@ -741,6 +751,8 @@
             cijferCell.textContent = displayCijfer;
             cijferCell.className = cijferClass; // Apply class to the cell
             row.insertCell().textContent = item["Aantal Waarderingen"] ?? "N/A";
+            row.insertCell().textContent =
+              item["Aantal Plaatsen"] ?? "N/A"; // Assuming this is a number
           });
         }
 
@@ -783,7 +795,9 @@
           // Sort new column, default descending for Cijfer/Waarderingen, ascending otherwise
           sortConfig[region].key = key;
           sortConfig[region].direction =
-            key === "Cijfer" || key === "Aantal Waarderingen"
+            key === "Cijfer" ||
+            key === "Aantal Waarderingen" ||
+            key === "Aantal Plaatsen"
               ? "descending"
               : "ascending";
         }
@@ -822,6 +836,9 @@
             } else if (key === "Afstand") {
               valA = parseFloat(String(valA)) ?? Infinity;
               valB = parseFloat(String(valB)) ?? Infinity;
+            } else if (key === "Aantal Plaatsen") {
+              valA = parseFloat(String(valA)) ?? Infinity;
+              valB = parseFloat(String(valB)) ?? Infinity;
             } else {
               valA = String(valA ?? "").toLowerCase();
               valB = String(valB ?? "").toLowerCase();
@@ -840,6 +857,7 @@
           "Afstand (km)",
           "Cijfer",
           "Aantal Waarderingen",
+          "Aantal Plaatsen",
         ];
         let csvContent = headers.map(escapeCSV).join(",") + "\n"; // Header row
 
@@ -858,6 +876,7 @@
             item.Afstand, // Keep raw distance number
             formattedCijfer,
             item["Aantal Waarderingen"],
+            item["Aantal Plaatsen"],
           ];
           csvContent += rowData.map(escapeCSV).join(",") + "\n";
         });
