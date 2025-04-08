@@ -8,4 +8,6 @@ Within the _Logistics for Healthy Healthcare_ project, we are employing mathemat
 
 **Assignment**
 
-Develop a dynamic digital dashboard for the Arnhem (and Nijmegen) region (at the municipal level) that provides insights into the available number of nursing home beds, the number of STRCs and crisis beds, as well as the corresponding waiting times and occupancy rates.
+Develop a dynamic digital dashboard for the Arnhem (and Nijmegen) region (at the municipal level) that provides insights into the available number of nursing home beds, the number of STRCs and crisis beds, as well as the corresponding waiting times and occupancy rat
+
+
