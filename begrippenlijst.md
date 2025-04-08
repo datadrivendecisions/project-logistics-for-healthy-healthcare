@@ -63,7 +63,7 @@ _Eerstelijnsverblijf_
 Dit betreft kortdurende verblijfsvoorzieningen voor ouderen, die eveneens via de Zvw gefinancierd worden en dus doorgaans buiten de onderhavige analyse vallen.
 
 ```mermaid
-flowchart LR
+flowchart TB
     %% Nodes definitie
     W[Wlz: Wet langdurige zorg]
     M[MPT: Modulair Pakket Thuis]
