@@ -64,55 +64,51 @@ Dit betreft kortdurende verblijfsvoorzieningen voor ouderen, die eveneens via de
 
 ```mermaid
 flowchart LR
-    %% Hoofdregelgeving en leveringsvormen
-    W(Wlz: Wet langdurige zorg)
-    M(MPT: Modulair Pakket Thuis)
-    V(VPT: Volledig Pakket Thuis)
-    P(PGB: Persoonsgebonden Budget)
-    I(Intramuraal zorg)
+    %% Nodes definitie
+    W[Wlz: Wet langdurige zorg]
+    M[MPT: Modulair Pakket Thuis]
+    V[VPT: Volledig Pakket Thuis]
+    P[PGB: Persoonsgebonden Budget]
+    I[Intramurale zorg]
 
-    %% Woonvormen en zorglocaties
-    GC(Geclusterde zorg)
-    NGC(Niet-geclusterde zorg)
-    NZ(Nultredenwoning)
+    GC[Geclusterde zorg]
+    NGC[Niet-geclusterde zorg]
+    NZ[Nultredenwoning]
 
-    %% Zorgzwaarte en indicaties
-    ZZ(ZZP: Zorgzwaartepakket)
-    VV(VV: Zorgprofielen VV-0 tot VV-10)
+    ZZ[ZZP: Zorgzwaartepakket]
+    VV[VV: Zorgprofielen VV-0 tot VV-10]
 
-    %% Indicator en registratie
-    O(OOSR: Oldest Old Support Ratio)
-    B(BAG: Basisregistratie Adressen en Gebouwen)
+    O[OOSR: Oldest Old Support Ratio]
+    B[BAG: Basisregistratie Adressen en Gebouwen]
 
-    %% Financiering buiten Wlz
-    Z(Zvw: Zorgverzekeringswet)
-    GR(GRZ: Geriatrische Revalidatiezorg)
-    EL(ELV: Eerstelijnsverblijf)
+    Z[Zvw: Zorgverzekeringswet]
+    GR[GRZ: Geriatrische Revalidatiezorg]
+    EL[ELV: Eerstelijnsverblijf]
 
-    %% Relaties
-    W --> M[Beleidskader voor modulair thuiszorgpakket]
-    W --> V[Beleidskader voor volledig thuiszorgpakket]
-    W --> P[Budgetregeling voor eigen regie (PGB)]
-    W --> I[Intramurale zorg valt onder de Wlz]
+    %% Relaties tussen de nodes met labels op de edges
+    W -->|Beleidskader voor modulair thuiszorgpakket| M
+    W -->|Beleidskader voor volledig thuiszorgpakket| V
+    W -->|Budgetregeling voor eigen regie| P
+    W -->|Intramurale zorg valt onder de Wlz| I
 
-    M --- V[Alternatieve leveringsvormen bij thuiszorg]
-    M --- P[Alternatieve leveringsvormen bij thuiszorg]
-    V --- P[Alternatieve leveringsvormen bij thuiszorg]
+    M ---|Alternatieve leveringsvormen| V
+    M ---|Alternatieve leveringsvormen| P
+    V ---|Alternatieve leveringsvormen| P
 
-    I --- GC[Geclusterde zorg: samenwonen met zorgondersteuning]
-    I --- NGC[Niet-geclusterde zorg: zorg in eigen woning]
-    NGC --- NZ[Nultredenwoning: optimale toegankelijkheid]
+    I ---|Wordt aangeboden als| GC
+    I ---|Wordt aangeboden als| NGC
+    NGC ---|Ideale situatie:| NZ
 
-    ZZ --> VV[Verdeling volgens zorgprofielen]
+    ZZ -->|Ingedeeld via| VV
 
-    O --- W[Indicator voor toenemende zorgvraag door dalende mantelzorg]
+    O ---|Indicator voor stijgende zorgvraag| W
 
-    B --- I[Registratie en bouwplanning van zorggebouwen]
+    B ---|Gebruikt voor registratie van| I
 
-    Z --> GR[GRZ valt onder de Zvw-financiering]
-    Z --> EL[ELV valt onder de Zvw-financiering]
+    Z -->|Financiering voor GRZ| GR
+    Z -->|Financiering voor ELV| EL
 
-    V --- GC[VPT is vaak gekoppeld aan geclusterde woonvormen]
-    P --- I[Gebruik zowel in intramuraal als niet-geclusterde settings]
-    P --- NGC[Gebruik als alternatief voor intramuraal aanbod]
+    V ---|Gekoppeld aan geclusterde woonvormen| GC
+    P ---|Wordt gebruikt in verschillende settings| I
+    P ---|Alternatief voor intramurale zorg| NGC
 ```
