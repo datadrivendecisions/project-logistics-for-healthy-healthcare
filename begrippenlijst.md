@@ -64,51 +64,51 @@ Dit betreft kortdurende verblijfsvoorzieningen voor ouderen, die eveneens via de
 
 ```mermaid
 flowchart TB
-    %% Bestaande knooppunten
+    %% Nodes definitie
     W[Wlz: Wet langdurige zorg]
     M[MPT: Modulair Pakket Thuis]
     V[VPT: Volledig Pakket Thuis]
     P[PGB: Persoonsgebonden Budget]
     I[Intramurale zorg]
+
     GC[Geclusterde zorg]
     NGC[Niet-geclusterde zorg]
     NZ[Nultredenwoning]
+
     ZZ[ZZP: Zorgzwaartepakket]
     VV[VV: Zorgprofielen VV-0 tot VV-10]
+
     O[OOSR: Oldest Old Support Ratio]
     B[BAG: Basisregistratie Adressen en Gebouwen]
+
     Z[Zvw: Zorgverzekeringswet]
     GR[GRZ: Geriatrische Revalidatiezorg]
     EL[ELV: Eerstelijnsverblijf]
 
-    %% Bestaande relaties
-    W --> M
-    W --> V
-    W --> P
-    W --> I
-    M --- V
-    M --- P
-    V --- P
-    I --> GC
-    I --> NGC
-    NGC --> NZ
-    ZZ --> VV
-    O --> W
-    B --> I
-    Z --> GR
-    Z --> EL
-    V --> GC
-    P --> I
-    P --> NGC
+    %% Relaties tussen de nodes met labels op de edges
+    W -->|Beleidskader voor modulair thuiszorgpakket| M
+    W -->|Beleidskader voor volledig thuiszorgpakket| V
+    W -->|Budgetregeling voor eigen regie| P
+    W -->|Intramurale zorg valt onder de Wlz| I
 
-    %% Nieuwe relaties
-    GC -->|Leveringsvormen: VPT, MPT, PGB| V
-    GC -->|Leveringsvormen: VPT, MPT, PGB| M
-    GC -->|Leveringsvormen: VPT, MPT, PGB| P
-    NGC -->|Leveringsvormen: VPT, MPT, PGB| V
-    NGC -->|Leveringsvormen: VPT, MPT, PGB| M
-    NGC -->|Leveringsvormen: VPT, MPT, PGB| P
-    NZ -->|Onderdeel van| GC
-    VV -->|Meerzorg mogelijk bij hogere zorgbehoefte| W
-    B -->|Registratie van geclusterde woonvormen| GC
+    M ---|Alternatieve leveringsvormen| V
+    M ---|Alternatieve leveringsvormen| P
+    V ---|Alternatieve leveringsvormen| P
+
+    I ---|Wordt aangeboden als| GC
+    I ---|Wordt aangeboden als| NGC
+    NGC ---|Ideale situatie:| NZ
+
+    ZZ -->|Ingedeeld via| VV
+
+    O ---|Indicator voor stijgende zorgvraag| W
+
+    B ---|Gebruikt voor registratie van| I
+
+    Z -->|Financiering voor GRZ| GR
+    Z -->|Financiering voor ELV| EL
+
+    V ---|Gekoppeld aan geclusterde woonvormen| GC
+    P ---|Wordt gebruikt in verschillende settings| I
+    P ---|Alternatief voor intramurale zorg| NGC
 ```
