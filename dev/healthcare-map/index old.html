@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map of the Netherlands with Selectable Grid</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      #map {
+        height: 550px;
+        width: 100%;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        cursor: grab;
+      }
+      #map:active {
+        cursor: grabbing;
+      }
+      @media (max-width: 600px) {
+        #map {
+          height: 350px;
+        }
+      }
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-color: #f4f4f4;
+        font-family: "Roboto", sans-serif;
+      }
+      main {
+        flex: 1 0 auto;
+        padding-top: 20px;
+      }
+      .map-container-card {
+        border-radius: 12px;
+        padding-bottom: 0 !important;
+      }
+      .card .card-content {
+        padding-bottom: 10px;
+      }
+      .range-field {
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+      /* Default style for grid cells */
+      .grid-cell {
+        fill: #007bff; /* Blue */
+        fill-opacity: 0.05;
+        stroke: #0056b3;
+        stroke-width: 0.5;
+        stroke-opacity: 0.4;
+        cursor: pointer; /* Add pointer cursor */
+      }
+      /* Style for overlapping cells */
+      .grid-cell.overlapping {
+        fill: #ffa500; /* Orange */
+        fill-opacity: 0.25;
+        stroke: #cc8400;
+        stroke-width: 0.5;
+        stroke-opacity: 0.5;
+      }
+      /* Style for selected cells */
+      .grid-cell.selected {
+        fill: #c8a2c8; /* Lilac */
+        fill-opacity: 0.6; /* Make selection more visible */
+        stroke: #800080; /* Purple border for selected */
+        stroke-width: 1;
+        stroke-opacity: 0.8;
+      }
+      /* Loading indicator style */
+      #loadingIndicator {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        border-radius: 8px;
+        z-index: 1001;
+        display: none;
+        font-weight: bold;
+        color: #333;
+      }
+      /* Style for the count displays */
+      .count-display {
+        margin-top: 10px;
+        font-weight: 500;
+        color: #555;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        /* Align items vertically in the count columns */
+        display: flex;
+        align-items: center;
+        min-height: 36px; /* Match button height */
+      }
+      /* Style for the unselect button */
+      #unselectAllBtn {
+        margin-top: 5px; /* Add some space above the button */
+      }
+      /* Adjust layout for controls */
+      .controls-row {
+        display: flex;
+        align-items: flex-end; /* Align items to bottom */
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+      }
+      .controls-row > div {
+        margin-bottom: 0; /* Remove default bottom margin from cols */
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper teal darken-2">
+        <a href="#" class="brand-logo center">Map of the Netherlands</a>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <div class="card map-container-card">
+          <div class="card-content">
+            <span class="card-title">Netherlands Map View</span>
+            <p>
+              Adjust grid size, click cells to select/deselect (lilac).
+              Overlapping cells (orange) are counted separately.
+            </p>
+            <div class="row controls-row" style="margin-bottom: 0">
+              <div class="col s12 m5">
+                <p class="range-field" style="margin-bottom: 0">
+                  <label for="gridSizeSlider"
+                    >Grid Size: <span id="gridSizeLabel">25</span> km</label
+                  >
+                  <input
+                    type="range"
+                    id="gridSizeSlider"
+                    min="5"
+                    max="100"
+                    step="5"
+                    value="25"
+                  />
+                </p>
+              </div>
+              <div class="col s6 m2">
+                <p class="count-display">
+                  Overlapping: <span id="overlapCount">--</span>
+                </p>
+              </div>
+              <div class="col s6 m2">
+                <p class="count-display">
+                  Selected: <span id="selectedCount">0</span>
+                </p>
+              </div>
+              <div class="col s12 m3">
+                <button
+                  id="unselectAllBtn"
+                  class="btn waves-effect waves-light grey lighten-1 black-text"
+                  style="width: 100%"
+                >
+                  Unselect All
+                  <i class="material-icons right tiny">clear_all</i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-action"
+            style="
+              padding: 0;
+              border-top: 1px solid rgba(160, 160, 160, 0.2);
+              position: relative;
+            "
+          >
+            <div id="map"></div>
+            <div id="loadingIndicator">Loading Boundaries...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer teal darken-1">
+      <div class="container">© 2025 Map Example</div>
+      <div class="footer-copyright teal darken-2">
+        <div class="container">
+          Created using Leaflet.js, Materialize CSS, and Turf.js
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
+    <script>
+      M.AutoInit(); // Initialize Materialize
+
+      // --- Leaflet Map Setup ---
+      const centerLat = 52.1326,
+        centerLon = 5.2913,
+        initialZoom = 7;
+      const map = L.map("map").setView([centerLat, centerLon], initialZoom);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // --- DOM Elements & State Variables ---
+      const gridSizeSlider = document.getElementById("gridSizeSlider");
+      const gridSizeLabel = document.getElementById("gridSizeLabel");
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      const overlapCountElement = document.getElementById("overlapCount");
+      const selectedCountElement = document.getElementById("selectedCount");
+      const unselectAllButton = document.getElementById("unselectAllBtn"); // Get the button
+      let gridLayer = L.layerGroup().addTo(map);
+      let netherlandsGeoJson = null;
+      let isUpdatingGrid = false;
+      let selectedCells = new Set(); // Use a Set to track selected cell layers
+
+      // --- GeoJSON Loading ---
+      const geoJsonUrl =
+        "https://raw.githubusercontent.com/cartomap/nl/refs/heads/gh-pages/wgs84/landsdeel_2025.geojson";
+      loadingIndicator.style.display = "block";
+      overlapCountElement.textContent = "Loading...";
+      selectedCountElement.textContent = "0";
+
+      fetch(geoJsonUrl)
+        .then((response) =>
+          response.ok
+            ? response.json()
+            : Promise.reject(`HTTP error! status: ${response.status}`)
+        )
+        .then((data) => {
+          if (!data || !["Feature", "FeatureCollection"].includes(data.type)) {
+            throw new Error("Loaded data is not valid GeoJSON.");
+          }
+          netherlandsGeoJson = data;
+          console.log("Netherlands GeoJSON loaded successfully.");
+          loadingIndicator.style.display = "none";
+          updateGrid(); // Draw initial grid
+        })
+        .catch((error) => {
+          console.error("Error loading/processing GeoJSON:", error);
+          loadingIndicator.textContent = "Error loading boundaries!";
+          overlapCountElement.textContent = "Error";
+          M.toast({
+            html: "Could not load Netherlands boundaries. Functionality limited.",
+            classes: "red darken-2",
+          });
+        });
+
+      // --- Grid Drawing Function ---
+      function updateGrid() {
+        if (isUpdatingGrid || !turf || !netherlandsGeoJson) {
+          if (!netherlandsGeoJson)
+            console.warn("Skipping grid update: GeoJSON not ready.");
+          if (!turf) console.warn("Skipping grid update: Turf.js not ready.");
+          return;
+        }
+
+        isUpdatingGrid = true;
+        const gridSizeKm = parseInt(gridSizeSlider.value);
+        let currentOverlapCount = 0;
+
+        // Clear previous grid and selection state
+        gridLayer.clearLayers();
+        selectedCells.clear();
+        selectedCountElement.textContent = "0"; // Reset selected count display
+
+        const bounds = map.getBounds();
+        const northEast = bounds.getNorthEast(),
+          southWest = bounds.getSouthWest();
+        const mapCenter = map.getCenter();
+        const centerLatRad = (mapCenter.lat * Math.PI) / 180;
+        const degLatPerKm = 1 / 111.132;
+        const degLonPerKm = 1 / (111.32 * Math.cos(centerLatRad));
+        const latSpacing = gridSizeKm * degLatPerKm,
+          lonSpacing = gridSizeKm * degLonPerKm;
+        const startLat = Math.floor(southWest.lat / latSpacing) * latSpacing;
+        const startLon = Math.floor(southWest.lng / lonSpacing) * lonSpacing;
+
+        requestAnimationFrame(() => {
+          // Smooth updates
+          for (
+            let lat = startLat;
+            lat < northEast.lat + latSpacing;
+            lat += latSpacing
+          ) {
+            for (
+              let lon = startLon;
+              lon < northEast.lng + lonSpacing;
+              lon += lonSpacing
+            ) {
+              const cellBoundsLatLng = [
+                [lat, lon],
+                [lat + latSpacing, lon + lonSpacing],
+              ];
+              const cellPolygonGeoJSON = turf.polygon([
+                [
+                  [lon, lat],
+                  [lon + lonSpacing, lat],
+                  [lon + lonSpacing, lat + latSpacing],
+                  [lon, lat + latSpacing],
+                  [lon, lat],
+                ],
+              ]);
+
+              let intersects = false;
+              try {
+                intersects = turf.booleanIntersects(
+                  cellPolygonGeoJSON,
+                  netherlandsGeoJson
+                );
+              } catch (e) {
+                console.warn("Turf intersection check failed:", e);
+              }
+
+              if (intersects) currentOverlapCount++;
+
+              const cellOptions = {
+                className: intersects ? "grid-cell overlapping" : "grid-cell",
+                interactive: true, // Make cell clickable
+              };
+
+              const cellRectangle = L.rectangle(cellBoundsLatLng, cellOptions);
+
+              // --- Click Handler for Cell Selection ---
+              cellRectangle.on("click", function (e) {
+                const layer = e.target;
+                const layerElement = layer.getElement();
+
+                if (layerElement) {
+                  if (layerElement.classList.contains("selected")) {
+                    layerElement.classList.remove("selected");
+                    selectedCells.delete(layer);
+                  } else {
+                    layerElement.classList.add("selected");
+                    selectedCells.add(layer);
+                  }
+                  selectedCountElement.textContent = selectedCells.size;
+                } else {
+                  console.warn("Could not get element for clicked layer.");
+                }
+                L.DomEvent.stopPropagation(e);
+              });
+
+              cellRectangle.addTo(gridLayer);
+            }
+          }
+          overlapCountElement.textContent = currentOverlapCount; // Update overlap count
+          isUpdatingGrid = false; // Reset flag
+        });
+      }
+
+      // --- Function to Unselect All Cells ---
+      function unselectAll() {
+        selectedCells.forEach((layer) => {
+          const layerElement = layer.getElement();
+          if (layerElement) {
+            layerElement.classList.remove("selected");
+          }
+        });
+        selectedCells.clear(); // Clear the tracking Set
+        selectedCountElement.textContent = "0"; // Update the count display
+        console.log("All cells unselected.");
+      }
+
+      // --- Debounce Helper ---
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // --- Event Listeners ---
+      const debouncedUpdateGrid = debounce(updateGrid, 300);
+
+      gridSizeSlider.addEventListener("input", () => {
+        gridSizeLabel.textContent = gridSizeSlider.value;
+        overlapCountElement.textContent = "Calculating...";
+        // Do not reset selection on slider input, only on grid redraw completion
+        debouncedUpdateGrid();
+      });
+
+      map.on("moveend", () => {
+        overlapCountElement.textContent = "Calculating...";
+        // Do not reset selection on map move, only on grid redraw completion
+        debouncedUpdateGrid();
+      });
+
+      // Add event listener for the "Unselect All" button
+      unselectAllButton.addEventListener("click", unselectAll);
+
+      // Initial grid draw handled by GeoJSON fetch success
+
+      console.log(
+        "Leaflet map initialized with selectable grid cells and unselect button."
+      );
+    </script>
+  </body>
+</html>
